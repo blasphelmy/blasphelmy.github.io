@@ -1,0 +1,147 @@
+@font-face {
+    /* i really like this font */
+    font-family: "San Francisco";
+    font-weight: 100;
+    src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-ultralight-webfont.woff");
+}
+
+@font-face {
+    font-family: "San Francisco Thin";
+    font-weight: 200;
+    src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-thin-webfont.woff");
+}
+
+@font-face {
+    font-family: "San Francisco Regular";
+    font-weight: 400;
+    src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
+}
+
+@font-face {
+    font-family: "San Francisco Bold";
+    font-weight: 700;
+    src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-bold-webfont.woff");
+  }
+
+@font-face {
+    font-family: "San Francisco Medium";
+    font-weight: 500;
+    src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-medium-webfont.woff");
+}
+body{
+    background-color: #f0e3d3;
+}
+#wrapper {
+    position: absolute;
+    width: auto;
+    height: auto;
+    padding-top: 150px;
+    border-radius: 20px;
+    min-width: 438px;
+    margin: auto;
+}
+
+#gameBoard {
+    display: grid;
+    margin: auto;
+    border-width: 15px;
+    border-style: solid;
+    border-color: rgb(211, 193, 172);
+    background-color: rgb(211, 193, 172);;
+    -webkit-box-shadow: 0px 3px 36px 4px rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 3px 36px 4px rgba(12, 12, 12, 0.2);
+    padding: 0px;
+    width: fit-content;
+    border-radius: 20px;
+}
+
+tileContainer {
+    position: relative;
+    border-width: 5px;
+    border-color: rgb(211, 193, 172);
+    border-style: solid;
+    background-color: #dfd0bd;
+    padding: 0;
+    border-radius: 15px;
+}
+
+.tile {
+    position: absolute;
+    padding: 0;
+}
+
+.tile>p {
+    position: relative;
+    font-size: 35px;
+    text-align: center;
+    font-family: "San Francisco Medium";
+    margin: 0px;
+}
+@keyframes pop {
+    0% { opacity: 100%;}
+    100% {opacity: 0%;}
+  }
+
+.active {
+    -webkit-box-shadow: inset 0px -5px 10px 5px rgba(0,0,0,0.07), 0px 2px 5px 0px rgba(0,0,0,0.15); 
+    box-shadow: inset 0px -5px 10px 5px rgba(0,0,0,0.07), 0px 2px 5px 0px rgba(0,0,0,0.15);
+    border-radius: 10px;
+}
+h1{
+    position: relative;
+    font-family: San Francisco Bold;
+    font-size: 100px;
+    display: inline;
+    color: rgb(94, 77, 57);
+}
+#selectGameSize {
+    position: relative;
+    bottom: -10px;
+    display: inline;
+    font-family: San Francisco Bold;
+    color: rgb(110, 88, 62);
+}
+#selectGameSize > p {
+    position: relative;
+    top: 10px;
+}
+.optionCircle {
+    display: inline-block;
+    height: 25px;
+    width: 25px;
+    border-radius: 25px;
+    border-style: solid;
+    border-width: 5px;
+    border-color: rgb(211, 193, 172);
+    cursor: pointer;
+}
+.optionCircle > p{
+    position: relative;
+    text-align: center;
+    font-family: San Francisco Bold;
+    color: rgb(110, 88, 62);
+    font-size: 17px;
+    top: -15px;
+}
+.filled {
+    background-color: rgb(211, 193, 172);
+}
+#ScoreBoard{
+    font-family: San Francisco Bold;
+    color: rgb(110, 88, 62);
+    font-size: 30px;
+    display: inline-block;
+    float: right;
+}
+.subitems{
+    font-size: 15px;
+    position: relative;
+    top: -20px;
+}
+#floatingText{
+    position: absolute;
+    font-size: 25px;
+    color: rgb(233, 104, 53);
+    right: 0px;
+    top: 100px;
+}

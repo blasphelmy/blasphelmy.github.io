@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2048</title>
+    <link rel="stylesheet" href="defaults.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+    <script src="2048.js"></script>
+    <script src="2048helper.js"></script>
+</head>
+<body onload="initializeStuff()">
+    <div id="wrapper">
+        <h1 id="title">2048</h1>
+        <div id= ScoreBoard>
+            <p id="floatingText"></p>
+            <p id="scoreTracker"></p>
+                <p id = "hiScore" class = "subitems">Hi Score: </p>
+            <p id="highestTile" class="subitems">Highest Tile: </p>
+        </div>
+        <div id="selectGameSize">
+        <p>Select Game Size</p>
+        <div id="4" class="optionCircle filled"><p>4</p></div>
+        <div id="5" class="optionCircle"><p>5</p></div>
+        <div id="6" class="optionCircle"><p>6</p></div>
+        <div id="7" class="optionCircle"><p>7</p></div></div>
+        <!-- <label for="gameSize">Enter in GameSize: </label>
+        <input type="text" value="4" id="gameSize" name="gameSize"><br> -->
+        <!-- <button onclick="createBoard()">New Game</button> -->
+        <br>
+        <br>
+        <div id="gameBoard">
+        </div>
+    </div>
+</body>
+<script>
+</script>
+<script src="detectSwipe.js"></script>
+</html>
