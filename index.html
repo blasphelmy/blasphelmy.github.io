@@ -63,8 +63,8 @@ a:enabled {
     background-image:url(/images/logo.png);
     background-size: contain;
     width: 130px;
-    height: 89.25px;
-    margin: 35px;
+    height: 130.25px;
+    margin: 20px;
 }
 #contentWrapper {
     position: relative;
@@ -125,7 +125,7 @@ window.addEventListener("scroll", function(){
 function initializeStuff(){
     setMainContentWidth();
     setMenuItemsHeight("menuItems", (window.innerHeight/3) / document.getElementsByClassName("menuItems").length);
-    positionElementVertically("linksWrapper", 70);
+    positionElementVertically("linksWrapper", 50);
     setMenuScrollBarDimensions();
 }
 
@@ -160,7 +160,7 @@ function positionElementVertically(elementID, percent){ //accepts the id of an e
     var child = document.getElementById(elementID); //then the percent in which you want to align the child 
     var parent = child.parentNode;                  //to parent
     var value = percent/100;
-    child.style.top = ((parent.offsetHeight - child.offsetHeight) * value) - (child.offsetHeight) + "px";
+    child.style.top = ((parent.offsetHeight - (2*child.offsetHeight)) * value) + "px";
 }
 function setMenuItemsHeight(className, height){
     var elements = document.getElementsByClassName(className);
