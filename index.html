@@ -6,30 +6,57 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=.8">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Baloo+2&family=Benne&display=swap"
-        rel="stylesheet">
+    <script   src="https://code.jquery.com/jquery-3.6.0.min.js"   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="   crossorigin="anonymous"></script>
     <link rel="stylesheet" href="default.css">
+    <link rel="stylesheet" href="fonts.css">
     <title>About Me</title>
 </head>
 <style>
 html {
     padding: 0;
     margin: 0;
+    scroll-behavior: smooth;
 }
 body {
-    background-color: rgb(255, 187, 0);
     padding: 0;
     margin: 0;
-}#mainWrapper {
+}
+#mainWrapper {
     display: flex;
     flex-direction: row;
     height: fit-content;
 }
 
 #menubar {
+    background-color: rgb(255, 187, 0);
     position: fixed;
     height: 100vh;
     width: 200px;
+    font-family: "San Francisco Regular";
+    font-size: 20px;
+}
+#linksWrapper {
+    position: relative;
+    text-align: center;
+}
+#linksWrapper > a {
+    display: block;
+    font-family: "San Francisco Regular";
+    text-decoration: none;
+    color: rgb(69, 115, 129);
+    border-left-style: solid;
+    margin-left: 20px;
+}
+#menuScroller {
+    position: absolute;
+    top:0px;
+    left:20px;
+    border-left-style: solid;
+    border-left-color: aqua;
+    background-color: rgba(0, 0, 255, 0.363);
+}
+a:enabled {
+    font-size: 20px;
 }
 #logo{
     background-image:url(/images/logo.png);
@@ -40,47 +67,100 @@ body {
 }
 #contentWrapper {
     position: relative;
-    left: 200px;
-    height: 100vh;
-    width: 100%;
+    background-color: rgb(80, 150, 172);
+    overflow-y: scroll;
 }
 .panel {
     background-color: rgb(80, 150, 172);
     position: relative;
+    left: 200px;
     height: 100vh;
+    width: fit-content;
+    text-align: center;
+    /* border: solid; */
+}
+.panel > h1 {
+    position: relative;
+    margin: auto;
+    font-family: "San Francisco Bold";
+    color: rgb(224, 241, 245);
+    font-size: 150px;
+}
+.inactive {
+    position: absolute;
 }
 </style>
+<body id="body" onload="initializeStuff()">
+    <div id="mainWrapper">
+        <div id="contentWrapper">
+            <div id="panel1" class="panel">
+                <h1>Panel 1</h1>
+            </div>
+            <div id="panel2" class="panel">
+                <h1>Panel 2</h1>
+            </div>
+            <div id="panel3" class="panel">
+                <h1>Panel 3</h1>
+            </div>
+    </div>
+
+    <div id="menubar">
+        <div id="logo"></div>
+        <div id="linksWrapper">
+            <a class="menuItems" href="#panel1">About Me</a>
+            <a class="menuItems" href="#panel2">Contact Me</a>
+            <a class="menuItems" href="#panel3">Porfolio</a>
+            <div id="menuScroller"></div>
+        </div>
+    </div>
+</body>
 <script>
+window.addEventListener("resize", function(){
+    initializeStuff();
+});
+window.addEventListener("scroll", function(){
+    moveMenuScrollBar();
+});
+function moveMenuScrollBar(){
+    setMenuScrollBarDimensions();
+    document.getElementById("menuScroller").style.top = (document.getElementById("linksWrapper").offsetHeight - document.getElementsByClassName("menuItems")[0].offsetHeight) * percentScrolled() + "px";
+}
+function setMenuScrollBarDimensions(){
+    document.getElementById("menuScroller").style.height = document.getElementsByClassName("menuItems")[0].offsetHeight + "px";
+    document.getElementById("menuScroller").style.width = document.getElementsByClassName("menuItems")[0].offsetWidth -10 + "px";
+}
+function percentScrolled(){
+    var contentMaxScroll = document.getElementById("contentWrapper").offsetHeight - window.innerHeight;
+    var distanceScrolled = document.documentElement.scrollTop
+    var percentScrolled = distanceScrolled/contentMaxScroll;
+    return percentScrolled;
+}
 function initializeStuff(){
-    setChildHeightToParent("mainWrapper");
+    setMainContentWidth();
+    setMenuItemsHeight("menuItems", (window.innerHeight/3) / document.getElementsByClassName("menuItems").length);
+    positionElementVertically("linksWrapper", 70);
+    setMenuScrollBarDimensions();
 }
 function setChildHeightToParent(elementID){ //accepts the id of an element and fits it to its parent
     var child = document.getElementById(elementID);
     var parent = child.parentNode;
-
     child.style.height = window.innerHeight + "px";
-    
-    console.log(parent);
+}
+function setMainContentWidth(){
+    var element = document.getElementById("contentWrapper");
+    element.style.width = window.innerWidth + "px";
+}
+function positionElementVertically(elementID, percent){ //accepts the id of an element as a string,
+    var child = document.getElementById(elementID); //then the percent in which you want to align the child 
+    var parent = child.parentNode;                  //to parent
+    var value = percent/100;
+    child.style.top = ((parent.offsetHeight - child.offsetHeight) * value) - (child.offsetHeight) + "px";
+}
+function setMenuItemsHeight(className, height){
+    var elements = document.getElementsByClassName(className);
+    for(var index = 0; index < elements.length; index++){
+        elements[index].style.setProperty("line-height", height + "px");
+    }
 }
 </script>
-<body onload="initializeStuff()">
-    <div id="mainWrapper">
-        <div id="menubar">
-            <div id="logo">
-            </div>
-        </div>
-        <div id="contentWrapper">
-            <div class="panel">
-                <div class="panelWrapper">
-                    <p>dsfdsf</p>
-                </div>
-            </div>
-            <div class="panel">
-            </div>
-            <div class="panel">
-            </div>
-        </div>
-    </div>
-</body>
-
 </html>
