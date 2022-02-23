@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=.8">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <script   src="https://code.jquery.com/jquery-3.6.0.min.js"   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="   crossorigin="anonymous"></script>
     <link rel="stylesheet" href="default.css">
     <link rel="stylesheet" href="fonts.css">
     <title>About Me</title>
@@ -52,8 +51,10 @@ body {
     top:0px;
     left:20px;
     border-left-style: solid;
-    border-left-color: aqua;
-    background-color: rgba(0, 0, 255, 0.363);
+    border-left-color: rgb(2, 190, 223);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: rgba(119, 0, 255, 0.137);
 }
 a:enabled {
     font-size: 20px;
@@ -67,7 +68,6 @@ a:enabled {
 }
 #contentWrapper {
     position: relative;
-    background-color: rgb(80, 150, 172);
     overflow-y: scroll;
 }
 .panel {
@@ -121,13 +121,21 @@ window.addEventListener("resize", function(){
 window.addEventListener("scroll", function(){
     moveMenuScrollBar();
 });
+
+function initializeStuff(){
+    setMainContentWidth();
+    setMenuItemsHeight("menuItems", (window.innerHeight/3) / document.getElementsByClassName("menuItems").length);
+    positionElementVertically("linksWrapper", 70);
+    setMenuScrollBarDimensions();
+}
+
 function moveMenuScrollBar(){
     setMenuScrollBarDimensions();
     document.getElementById("menuScroller").style.top = (document.getElementById("linksWrapper").offsetHeight - document.getElementsByClassName("menuItems")[0].offsetHeight) * percentScrolled() + "px";
 }
 function setMenuScrollBarDimensions(){
     document.getElementById("menuScroller").style.height = document.getElementsByClassName("menuItems")[0].offsetHeight + "px";
-    document.getElementById("menuScroller").style.width = document.getElementsByClassName("menuItems")[0].offsetWidth -10 + "px";
+    document.getElementById("menuScroller").style.width = document.getElementsByClassName("menuItems")[0].offsetWidth - 20 + "px";
 }
 function percentScrolled(){
     var contentMaxScroll = document.getElementById("contentWrapper").offsetHeight - window.innerHeight;
@@ -135,20 +143,18 @@ function percentScrolled(){
     var percentScrolled = distanceScrolled/contentMaxScroll;
     return percentScrolled;
 }
-function initializeStuff(){
-    setMainContentWidth();
-    setMenuItemsHeight("menuItems", (window.innerHeight/3) / document.getElementsByClassName("menuItems").length);
-    positionElementVertically("linksWrapper", 70);
-    setMenuScrollBarDimensions();
-}
 function setChildHeightToParent(elementID){ //accepts the id of an element and fits it to its parent
     var child = document.getElementById(elementID);
     var parent = child.parentNode;
     child.style.height = window.innerHeight + "px";
 }
-function setMainContentWidth(){
+function setMainContentWidth(){ //set the width of contendWrapper to available width of screen, then set each panel in contentWrapper to window width - menubar width
     var element = document.getElementById("contentWrapper");
     element.style.width = window.innerWidth + "px";
+    var elements = document.getElementsByClassName("panel");
+    for(var index = 0; index < elements.length; index++){
+        elements[index].style.width = (window.innerWidth - document.getElementById("menubar").offsetWidth) + "px";
+    }
 }
 function positionElementVertically(elementID, percent){ //accepts the id of an element as a string,
     var child = document.getElementById(elementID); //then the percent in which you want to align the child 
