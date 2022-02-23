@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=.8">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Baloo+2&family=Benne&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="default.css">
+    <title>About Me</title>
+</head>
+<style>
+html {
+    padding: 0;
+    margin: 0;
+}
+body {
+    background-color: rgb(255, 187, 0);
+    padding: 0;
+    margin: 0;
+}#mainWrapper {
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+}
+
+#menubar {
+    position: fixed;
+    height: 100vh;
+    width: 200px;
+}
+#logo{
+    background-image:url(/images/logo.png);
+    background-size: contain;
+    width: 130px;
+    height: 89.25px;
+    margin: 35px;
+}
+#contentWrapper {
+    position: relative;
+    left: 200px;
+    height: 100vh;
+    width: 100%;
+}
+.panel {
+    background-color: rgb(80, 150, 172);
+    position: relative;
+    height: 100vh;
+}
+</style>
+<script>
+function initializeStuff(){
+    setChildHeightToParent("mainWrapper");
+}
+function setChildHeightToParent(elementID){ //accepts the id of an element and fits it to its parent
+    var child = document.getElementById(elementID);
+    var parent = child.parentNode;
+
+    child.style.height = window.innerHeight + "px";
+    
+    console.log(parent);
+}
+</script>
+<body onload="initializeStuff()">
+    <div id="mainWrapper">
+        <div id="menubar">
+            <div id="logo">
+            </div>
+        </div>
+        <div id="contentWrapper">
+            <div class="panel">
+                <div class="panelWrapper">
+                    <p>dsfdsf</p>
+                </div>
+            </div>
+            <div class="panel">
+            </div>
+            <div class="panel">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
