@@ -32,11 +32,12 @@ function initializeStuff(){
     if(!document.cookie){
         document.cookie = "cookieName= true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
     }
+    //dom event listeners exists forever.
     for(i = 0; i < optionSelectionElements.length; i++){
         optionSelectionElements[i].addEventListener('click', function(){
             createBoard(this.id);
             document.getElementById("title").style.top = 0 + "px";
-            if (this.id == 4) {
+            if (this.id == 4) { //again, did i forget to parse somewhere? darn javascript...
                 document.getElementById("title").style.fontSize = 100 + "px";
                 document.getElementById("title").innerText = "2048";
             }if (this.id == 5) {
@@ -53,7 +54,7 @@ function initializeStuff(){
             } 
         });
     }
-    createBoard(4);
+    createBoard(4);//gameBoard is set to 4 on page load
     centerWindow();
     centerToParent();
 }
@@ -61,9 +62,8 @@ function createBoard(size) {
     let w = window.innerWidth;
     fillCorrectCircle(size);
     newGame = new gameBoard(size);
-    // newGame.newRandomTile();
     newGame.displayArray();
-    centerWindow();
+    centerWindow(document.getElementById("wrapper"));
     centerToParent();
 }
 function centerWindow() {

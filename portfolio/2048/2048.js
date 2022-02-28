@@ -17,9 +17,9 @@ class gameBoard {
     movedTileList;
     hiScore;
     tileSize;
-
     constructor(size) {
         size = parseInt(size); //we parse size as an int
+        // size = 10;
         this.boardSize = size; //setting up basic tile size and difficulty configuration based on boardsize. tile size is in pixels.
         if (this.boardSize <= 4) {
             this.requiredStreak = 2;
@@ -38,8 +38,9 @@ class gameBoard {
             this.numOfRandomTilesPerMove = 3;
             this.tileSize = 58;
         } else {
-            this.requiredStreak = 3;
-            this.numOfRandomTilesPerMove = 1;
+            this.requiredStreak = 4;
+            this.numOfRandomTilesPerMove = 5;
+            this.tileSize = 58;
         }
         this.createGameElements(size);
         // this.gameArray[0][0] = 1024;
@@ -70,7 +71,7 @@ class gameBoard {
         for (let i = 0; i < size; i++) {
             this.gameArray[i] = new Array(size);
             for (let j = 0; j < size; j++) {
-                //set game matrix
+                //set game matrix to zero
                 this.gameArray[i][j] = 0;
                 //cellid = example (row = 8, col 3) = 83
                 let cellID = `${i}${j}`;
@@ -92,7 +93,7 @@ class gameBoard {
                 //paragragh creation. i should've probably generated a unique id for this as well. would have made some work later on easier. oh well.
                 let dataNode = document.createElement("p");
 
-                //after we create the ness. elements, we appendx`
+                //after we create the ness. elements, we append
                 cell.appendChild(dataNode);
                 tileContainer.appendChild(cell);
                 element.appendChild(tileContainer);
@@ -149,7 +150,7 @@ class gameBoard {
             this.setCookie(("highestTile" + this.boardSize),this.getMaxTileSize());
         }
 
-        //we retrieve the high score and highest achived tile for this boardsize
+        //we retrieve the high score and highest acheived tile for this boardsize
         var highestTile = this.getCookie("highestTile" + this.boardSize);
         var currentHighScore = this.getCookie(this.boardSize);
 
@@ -174,16 +175,17 @@ class gameBoard {
     }
     displayArray() { //displays this game's matrix to gameBoard. 
         for (let row = 0; row < this.gameArray.length; row++) {
-            for (let col = 0; col < this.gameArray[0].length; col++) {
+            for (let col = 0; col < this.gameArray[0].length; col++) {//gets ALL element from gameboard and resets them to blank. right now this game's matrix is out of sync with display
                 let cellID = `${row}${col}`;
                 var element = document.getElementById(cellID);
-                element.innerHTML = "<p></p>";
+                element.innerHTML = "<p></p>"; //i cant think around this. so yikes, this is messy
                 element.style.setProperty("background-color", "");
                 element.style.setProperty("color", "black");
                 element.style.setProperty("left", "0px");
                 element.style.setProperty("top", "0px");
                 element.innerHTML = "<p></p>";
                 element.classList.remove("active");
+                
                 if (this.gameArray[row][col] != 0) {
                     element.classList.add("active");
                     element.innerHTML = "<p>" + this.gameArray[row][col] + "</p>";
@@ -195,12 +197,11 @@ class gameBoard {
     }
     setTileFontSize(element, row, col){ //set numbers font size to not overflow out of tiles. these are preset numbers, could probably do it a little more algorithmically. oh well
         element.firstChild.style.fontSize = 35 + "px"; //accepts an element, and row and column to point to a location in this game's array
-            if(this.boardSize == 4){
+            if(this.boardSize == 4){ //did i forget to parse size as an int? where?
                 if(this.gameArray[row][col] > 9999){
                     element.firstChild.style.fontSize = 30 + "px";
                 }
-            }
-            if(this.boardSize == 5){
+            }else if(this.boardSize == 5){
                 if(this.gameArray[row][col] < 999){
                     element.firstChild.style.fontSize = 30 + "px";
                 }else if(this.gameArray[row][col] < 9999){
@@ -235,7 +236,7 @@ class gameBoard {
     setTileColor(value, element) {
         switch (value) {
             case 2:
-                element.style.setProperty("background-color", "#eee4da");
+                element.style.setProperty("background-color", "#eee4da"); //jquery might like make this look nice.
                 break;
             case 4:
             case 6:
@@ -306,9 +307,8 @@ class gameBoard {
                 element.style.setProperty("color", "#f9f6f2");
         }
     }
-    newRandomTile() {
+    newRandomTile() { //what I should've done was push the empty tiles into a stack then randomly pick from them
         let numEmptyTiles = 0;
-
         for (let row = 0; row < this.gameArray.length; row++) {
             for (let col = 0; col < this.gameArray[row].length; col++) {
                 if (this.gameArray[row][col] === 0) {
@@ -316,7 +316,7 @@ class gameBoard {
                 }
             }
         }
-        for (let i = 0; this.requiredStreak === 2 && i < numEmptyTiles && i < this.numOfRandomTilesPerMove; i++) {
+        for (let i = 0; i < numEmptyTiles && i < this.numOfRandomTilesPerMove; i++) {
             var row = this.getRandomInt(this.gameArray.length);
             var col = this.getRandomInt(this.gameArray.length);
             while (this.gameArray[row][col] != 0) {
@@ -326,7 +326,7 @@ class gameBoard {
 
             var cellID = row + "" + col;
             this.gameArray[row][col] = Math.pow(2, this.getRandomInt_Ceil(2));
-            document.getElementById(cellID).style.background = "#eedbcb";
+            document.getElementById(cellID).style.background = "#f7e1cd";
             document.getElementById(cellID).classList.add("active");
             document.getElementById(cellID).innerHTML = "<p>" + this.gameArray[row][col] + "</p>";
             this.setTileFontSize(document.getElementById(cellID), row, col);
@@ -357,7 +357,7 @@ class gameBoard {
         validMove.play();
         this.displayHighScore();
     }
-    actuateTile(x1, y1, x2, y2, thisValue) {
+    actuateTile(x1, y1, x2, y2) { //accepts two coordinates, and the element to animate
         var cellID = `${x1}${y1}`;
         var targetCellID = `${x2}${y2}`;
         var endTileValue = this.gameArray[x2][y2];
@@ -469,7 +469,7 @@ class gameBoard {
     }
     
     flowUp(gameArray, probing) {
-        //col by col, top down
+        //col by col, top down. if we move gameboard up, we must check each column from the top down, same for the other moves: down right left 
         var moveTotal = 0;//keeps a running total of this move's combined score
         for (var col = 0; col < gameArray[0].length; col++) {
             var streak = 1; //set initial streak at
@@ -477,10 +477,8 @@ class gameBoard {
             var memValue = "undefined" //this should change whenever we hit a tile with a different value. we start out as "undefined" since it will be more convienient
             //length gives us max size, max size - 1 gives us max starting index of gameArray 
             for (var row = 0; row < gameArray.length; row++) { //we are on the current cell
-
                 //step 1 save current cell value to thisValue. thisValue will be useful later on.
                 var thisValue = gameArray[row][col]; //we set value of current cell to thisValue 
-
                 //step 2. ignore if zero; first, we check if current cell equals to the one before it.
                 //step 2a. if not, then we reset tile streak back to one.
                 if (thisValue != 0 && thisValue != memValue) { 
@@ -489,23 +487,24 @@ class gameBoard {
                 } else if (thisValue === memValue) { //2b. if previous cell = this cell, we add to our streak.
                     streak++;
                 }
-                if (thisValue != 0) { //3. if current cell isn't 0, then we may proceed.
+
+                if (thisValue != 0) { //3. if current cell isn't 0, then we may proceed. else we skip this entire chain to line 521
                     let row_2 = row; //4. we do not want to mess with row, so we make a copy of it. it will also be useful information to know
                                     //for when we animate tile later
-                    while (row_2 > 0 && gameArray[row_2 - 1][col] === 0) { //we check concurrent cells while zero.
+                    while (row_2 > 0 && gameArray[row_2 - 1][col] === 0) { //we check concurrent cells while zero until we hit a nonzero.
                         row_2--;
                     }
 
-                    if (row_2 != row) { //if row_2 = row, then cell doesn't need to move.
+                    if (row_2 != row) { //if row_2 = row, then cell doesn't need to do anything.
                         gameArray[row_2][col] = thisValue;  //set the newfound cell position(row_2, col) to the value of the old position(row, col)
                         gameArray[row][col] = 0; //reset this current cell value
                         if(probing === true){
                             return true; //this is all we need to know if we are just probing. goodbye. else =>
                         }
                     } if (thisValue === memValue && streak === this.requiredStreak) { //if we have checked streak = streak number of cells, 
-                                                                                    //that must mean there is a mean a merge is available.
+                                                                                    //that must mean there is a mean a merge is available. and thisValue === memValue should obviously always true
                         for (let index = 0; index < this.requiredStreak; index++) { //we set cells leading up to merger cell to zero.
-                            gameArray[row_2 - index][col] = 0; //setting leading cells to zero
+                            gameArray[row_2 - index][col] = 0; //setting leading cells to zero.
                             if (index === this.requiredStreak - 1) { //destination cell is the final cell of the streak
                                 gameArray[row_2 - index][col] = thisValue * this.requiredStreak; //set destination cell to streak required * cell value. 
                                 if(probing === false){ //we only need to calculate score on an actual move. 
@@ -519,9 +518,10 @@ class gameBoard {
                     }
                     if(probing === false){ //if this move isn't a probe, then we actuate the tile. this shouldn't be needed. it is a failsafe.
                         document.getElementById(row+""+col).style.zIndex = index++;
-                        this.actuateTile(row, col, row_2, col, thisValue);
+                        this.actuateTile(row, col, row_2, col);
                     }
                 }
+
             }
         }
         if(moveTotal!=0){ 
@@ -580,7 +580,7 @@ class gameBoard {
                     }
                     if(probing === false){
                         document.getElementById(row+""+col).style.zIndex = index++;
-                        this.actuateTile(row, col, row_2, col, thisValue);
+                        this.actuateTile(row, col, row_2, col);
                     }
                 }
             }
@@ -595,13 +595,11 @@ class gameBoard {
         for (var row = 0; row < gameArray.length; row++) {
             var streak = 1;
             var index = 5;
-            var memValue = "undefined" //this should change whenever we hit a tile with a different value
-            //length gives us max size, max size - 1 gives us max starting index of gameArray 
-            for (var col = gameArray.length - 1; col >= 0; col--) { //we are on the current cell
+            var memValue = "undefined";
+            for (var col = gameArray.length - 1; col >= 0; col--) {
 
-                var thisValue = gameArray[row][col]; //we set value of current cell to thisValue 
+                var thisValue = gameArray[row][col];
 
-                //if zero, ignore
                 if (thisValue != 0 && thisValue != memValue) {
                     memValue = thisValue;
                     streak = 1;
@@ -643,7 +641,7 @@ class gameBoard {
                     }
                     if(probing === false){
                         document.getElementById(row+""+col).style.zIndex = index++;
-                        this.actuateTile(row, col, row, col_2, thisValue);
+                        this.actuateTile(row, col, row, col_2);
                     }
                 }
             }
@@ -705,7 +703,7 @@ class gameBoard {
                     }
                     if(probing === false){
                         document.getElementById(row+""+col).style.zIndex = index++;
-                        this.actuateTile(row, col, row, col_2, thisValue);
+                        this.actuateTile(row, col, row, col_2);
                     }
                 }
             }
