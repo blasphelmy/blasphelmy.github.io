@@ -30,7 +30,7 @@ h1{
 .codeEditiors{
   position: relative;
   display: inline-block;
-  width: 49%;
+  width: 48%;
   border-width: 2px;
 }
 .frameContainer { 
@@ -159,6 +159,7 @@ button {
   background-color: rgba(129, 123, 158, 0.123);
 }
 #menuScreen > a {
+  text-decoration: none;
   padding: 10px;
   color: rgb(255, 250, 233);
   display: block;
