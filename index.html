@@ -1,172 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=.8">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href="default.css">
-    <link rel="stylesheet" href="fonts.css">
-    <title>About Me</title>
-</head>
+    <script src="jsScoper/lib/codemirror.js"></script>
+    <script src="jsScoper/javascript/matchbrackets.js"></script>
+    <script src="jsScoper/javascript/closebrackets.js"></script>
+    <link rel="stylesheet" href="jsScoper/lib/codemirror.css">
+    <link rel="stylesheet" href="jsScoper/theme/material-palenight.css">
+    <script src="jsScoper/javascript/javascript.js"></script>
+
+    <script src="jsScoper/objects.js"></script>
+    <script src="jsScoper/tools.js"></script>
+    <script src="jsScoper/regexDefinitions.js"></script>
+    <script src="jsScoper/handlers.js"></script>
+    <script src="jsScoper/eventListeners.js"></script>
+    <link rel="stylesheet" href="jsScoper/style.css" />
+
+    <title>parse</title>
+  </head>
+  <body>
 <style>
-html {
-    padding: 0;
-    margin: 0;
-    scroll-behavior: smooth;
+#navbar{
+  background-color: rgb(106, 104, 131);
 }
-body {
-    padding: 0;
-    margin: 0;
+#menuButton{
+  position: relative;
+  transform: rotate(1);
+  font-size: 50px;
+  display: inline-block;
+  float: right;
+  color: white;
 }
-#mainWrapper {
-    display: flex;
-    flex-direction: row;
-    height: fit-content;
-}
-
-#menubar {
-    background-color: rgb(255, 214, 31);
-    position: fixed;
-    height: 100vh;
-    width: 200px;
-    font-family: "San Francisco Regular";
-    font-size: 20px;
-}
-#linksWrapper {
-    position: relative;
-    text-align: center;
-}
-#linksWrapper > a {
-    display: block;
-    font-family: "San Francisco Regular";
-    text-decoration: none;
-    color: rgb(69, 115, 129);
-    border-left-style: solid;
-    margin-left: 20px;
-}
-#menuScroller {
-    position: absolute;
-    top:0px;
-    left:20px;
-    border-left-style: solid;
-    border-left-color: rgb(2, 190, 223);
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    background-color: rgba(119, 0, 255, 0.137);
-}
-a:enabled {
-    font-size: 20px;
-}
-#logo{
-    background-image:url(/images/logo.png);
-    background-size: contain;
-    width: 130px;
-    height: 130.25px;
-    margin: 30px;
-}
-#contentWrapper {
-    position: relative;
-    overflow-y: scroll;
-}
-.panel {
-    background-color: rgb(80, 150, 172);
-    position: relative;
-    left: 200px;
-    height: 100vh;
-    width: fit-content;
-    text-align: center;
-    /* border: solid; */
-}
-.panel > h1 {
-    position: relative;
-    margin: auto;
-    font-family: "San Francisco Bold";
-    color: rgb(224, 241, 245);
-    font-size: 150px;
-}
-.inactive {
-    position: absolute;
+#menuButton > p {
+  display: inline;
+  margin-left: -50px;
 }
 </style>
-<body id="body" onload="initializeStuff()">
-    <div id="mainWrapper">
-        <div id="contentWrapper">
-            <div id="panel1" class="panel">
-                <h1>Panel 1</h1>
-            </div>
-            <div id="panel2" class="panel">
-                <h1>Panel 2</h1>
-            </div>
-            <div id="panel3" class="panel">
-                <h1>Panel 3</h1>
-            </div>
-    </div>
+<div id = "navbar">
+<h1 style="display: inline-block;">David Nguyen</h1> <div id="menuButton"><p>|</p><p>|</p><p>|</p></div>
+</div>
+<button id="runBtn" onclick="runButton()">Run Code</button>
+<button onclick="showHide()">Show/Hide Scope Visualiser</button>
+</div>
+<br><br><br><br>
+<div id="mainFrameContainer" class="hide">
+</div>
+<div id="console">
+</div>
+<div id="codeEditorWrapper">
+<div class="codeEditiors">
+  <textarea id="code" name="code">
+var year = (11+5)/16 * 2;
+var hellomessage = "Hello! Welcome to my landing page! ";
+var aQuickAbout = "here, you will soon be able to find more projects that I've done during my time at Renton Technical College along with some additional information about me and my interests outside of school"; 
+var keyword = "internship";
+function moreInfo(){
+  hellomessage = "More information could be found on my about me page!";
+  console.log(" ");
+  console.log(goal);
+}
+function a(){
+  hellomessage = "I’m a " + year + "nd  year CSI student at ";
+  var location;
+  function b(){
+    location = "Renton Technical College.";
+    goal = "What I'm looking for are CompSci "+ keyword + " opportunities.";
+  }
+  b();
+  console.log(hellomessage + location);
+  console.log(aQuickAbout);
+  moreInfo();
+}
+function offer(){
+    var haveOffer = "If you have any opportunities";
+  console.log(haveOffer + "  and would like to offer me an " + keyword + "...");
+}
+function contactMe(){
+  var email = "dhnguyen08@student.rtc.edu";
+  console.log("Or, you could shoot me an email @ \n" + email);
+  var goodbyeMessage = "Thanks for stopping by!";
+  function a(){
+    console.log(" ");
+    console.log("Thanks for stopping by!");
+  }
+  a();
+}
+console.log(hellomessage);
+a();
+offer();
+console.log(hellomessage);
+contactMe();    
 
-    <div id="menubar">
-        <div id="logo"></div>
-        <div id="linksWrapper">
-            <a class="menuItems" href="#panel1">About Me</a>
-            <a class="menuItems" href="#panel2">Contact Me</a>
-            <a class="menuItems" href="#panel3">Porfolio</a>
-            <div id="menuScroller"></div>
-        </div>
-    </div>
+  </textarea>
+</div>
+<div class="codeEditiors">
+  <textarea id="code_array" name="code">
+  </textarea>
+</div>
+</div>
+
 </body>
+
 <script>
-window.addEventListener("resize", function(){
-    initializeStuff();
-});
-window.addEventListener("scroll", function(){
-    moveMenuScrollBar();
-});
-
-function initializeStuff(){
-    setMainContentWidth();
-    setMenuItemsHeight("menuItems", (window.innerHeight/3) / document.getElementsByClassName("menuItems").length);
-    positionElementVertically("linksWrapper", 50);
-    setMenuScrollBarDimensions();
+var errorDetected = false;
+var editor = null;
+var outPutEditor = null;
+var count = 1;
+var consoleline = 1;
+var defaultDelay = 250;
+function initParse() {
+  //console.clear();
+  document.getElementById("mainFrameContainer").innerHTML = "";
+  document.getElementById("console").innerHTML = "";
+  errorDetected = false;
+  count = 1;
+  consoleline = 1;
+  //step 1, we get javascript code from user as a raw string.
+  var inputString = editor.getValue() + ";";
+  //now we split the inputString into its induvidual components
+  var CallStack = breakIntoComponents(inputString);
+  outPutCallStacktoCodeEditor(CallStack);
+  var newFunction = new functionDEF("Global", 0, CallStack.length);
+  var FinalFrame = interpretCallStack(0, CallStack, new frame(newFunction, CallStack.length, count));
+  console.log(FinalFrame);
 }
-
-function moveMenuScrollBar(){
-    setMenuScrollBarDimensions();
-    document.getElementById("menuScroller").style.top = (document.getElementById("linksWrapper").offsetHeight - document.getElementsByClassName("menuItems")[0].offsetHeight) * percentScrolled() + "px";
-}
-function setMenuScrollBarDimensions(){
-    document.getElementById("menuScroller").style.height = document.getElementsByClassName("menuItems")[0].offsetHeight + "px";
-    document.getElementById("menuScroller").style.width = document.getElementsByClassName("menuItems")[0].offsetWidth - 20 + "px";
-}
-function percentScrolled(){
-    var contentMaxScroll = document.getElementById("contentWrapper").offsetHeight - window.innerHeight;
-    var distanceScrolled = document.documentElement.scrollTop
-    var percentScrolled = distanceScrolled/contentMaxScroll;
-    return percentScrolled;
-}
-function setChildHeightToParent(elementID){ //accepts the id of an element and fits it to its parent
-    var child = document.getElementById(elementID);
-    var parent = child.parentNode;
-    child.style.height = window.innerHeight + "px";
-}
-function setMainContentWidth(){ //set the width of contendWrapper to available width of screen, then set each panel in contentWrapper to window width - menubar width
-    var element = document.getElementById("contentWrapper");
-    element.style.width = window.innerWidth + "px";
-    var elements = document.getElementsByClassName("panel");
-    for(var index = 0; index < elements.length; index++){
-        elements[index].style.width = (window.innerWidth - document.getElementById("menubar").offsetWidth) + "px";
+function interpretCallStack(start, array, Frame) {
+  var elementFrame = null;
+  if(Frame.id === "Global"){
+    elementFrame = document.querySelector("#mainFrameContainer");
+    elementFrame.classList.add("fade-in");
+  }else{
+    elementFrame = document.getElementById(Frame.previousNodeFrame.id + Frame.previousNodeFrame.fIndex + "ChildrenFrames");
+    setTimeout(() => {
+      elementFrame.classList.remove("hide");
+      elementFrame.classList.add("show", "fade-in");
+    }, count * defaultDelay);
+    count++;
+  }
+  createNewFrameElements(elementFrame, Frame);
+  
+  for (var index = Frame.start; index <= Frame.end && errorDetected === false; index++) {
+   console.log("index ", index);
+    //DETECT FUNCTION DECLATION TOKEN 
+    //nothing fancy, just regex and more regex
+    if (isFunctionDeclarion(array[index])) {
+     index = functionDeclaredHandler(index, array, Frame);
+      //DETECT VARIABLE DECLATION TOKEN
+    } else if (isVarDeclartion(array[index])) {
+      index = variableDeclarationHandler(index, array, Frame);
+      //DETECT VARIABLE REASSIGNMENT
+    }else if(detectStatementVariableReassignment(array[index])){
+      variableReassignmentHandler(index, array, Frame);
     }
-}
-function positionElementVertically(elementID, percent){ //accepts the id of an element as a string,
-    var child = document.getElementById(elementID); //then the percent in which you want to align the child 
-    var parent = child.parentNode;                  //to parent
-    var value = percent/100;
-    child.style.top = ((parent.offsetHeight - (2*child.offsetHeight)) * value) + "px";
-}
-function setMenuItemsHeight(className, height){
-    var elements = document.getElementsByClassName(className);
-    for(var index = 0; index < elements.length; index++){
-        elements[index].style.setProperty("line-height", height + "px");
+    else if(detectConsoleLog(array[index])){
+        consoleLoghandler(index, array, Frame);
     }
+    else if(detectFunctionCalls(array[index])){
+      var originFrame = returnFrameContainingFunctionDEF(Frame, array[index]);
+      if(originFrame.returnFunctionDefinitions(array[index])){
+        var newFunctionDef = originFrame.returnFunctionDefinitions(array[index]);
+        var newFrame = new frame(newFunctionDef, index, count);
+        count++;
+        newFrame.previousNodeFrame = originFrame;
+        originFrame.addChildFrame(newFrame);
+        interpretCallStack(newFunctionDef.getStart, array, newFrame);
+      }
+      else{
+        addConsoleLine("error: on line " + index + " function definition doesn't exist!");
+        errorDetected = true;
+        return;
+      }
+    }else if(!(new RegExp(/(['}{'])/gm).test(array[index])) && index < array.length-1){
+      addConsoleLine("error: on line " + index);
+      errorDetected = true;
+      return;
+    }
+  }
+  if(Frame.id === "Global"){
+    return Frame;
+  }
 }
-</script>
+function returnFunction(array) {}
+  </script>
 </html>
