@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2048</title>
+    <link rel="stylesheet" href="2048/defaults.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+    <script src="2048/2048.js"></script>
+    <script src="2048/2048helper.js"></script>
+
+    <link rel="stylesheet" href="defaults.css" />
+    <script src="menuButton.js"></script>
+</head>
+<style>
+#menuScreen {
+  background-color: #f0e3d3;
+}
+#menuScreen > a {
+  padding: 10px;
+  color: rgb(94, 77, 57);
+  display: block;
+  text-align: center;
+}
+#menuScreen > a:hover {
+  background-color: #e9d5beb7;
+}
+#navbar {
+    padding-top: 20px;
+    min-height: 100px;
+    font-family: "San Francisco Bold";
+    color: rgb(94, 77, 57);
+    background-color: #f0e3d3;
+}
+#menuButton{
+  font-family: "Lucida Console", "Courier New", monospace;
+  font-weight: bolder;
+  position: relative;
+  top: -45px;
+  padding: 35px;
+  font-size: 25px;
+  display: inline-block;
+  float: right;
+  color: rgb(94, 77, 57);
+  cursor: pointer;
+}
+#menuButton > p {
+  transform: rotate(90deg);
+  display: block;
+  line-height: 0px;
+  padding: 0;
+}
+</style>
+<div id = "navbar">
+    <div id="menuScreen" class="hide">
+      <a href="2048.html">A Simple Game of 2048</a>
+      <a href="calculatorClone.html">Macintosh Calculator Clone</a>
+      <a href="index.html">Javascript Scoper</a>
+      <hr>
+      <a href="about.html">About Me</a>
+      <a href="contact.html">Contact Me</a>
+    </div>
+  <h1 style="display: inline-block; padding-left: 30px;">David Nguyen</h1> <div id="menuButton" onclick="menuBarClick()"><p>|</p><p>|</p><p>|</p></div>
+</div>
+<body onload="initializeStuff()">
+    <div id="wrapper">
+        <h1 id="title">2048</h1>
+        <div id= ScoreBoard>
+            <p id="floatingText"></p>
+            <p id="scoreTracker"></p>
+                <p id = "hiScore" class = "subitems">Hi Score: </p>
+            <p id="highestTile" class="subitems">Highest Tile: </p>
+        </div>
+        <div id="selectGameSize">
+        <p>Select Game Size</p>
+        <div id="4" class="optionCircle filled"><p>4</p></div>
+        <div id="5" class="optionCircle"><p>5</p></div>
+        <div id="6" class="optionCircle"><p>6</p></div>
+        <div id="7" class="optionCircle"><p>7</p></div></div>
+        <!-- <label for="gameSize">Enter in GameSize: </label>
+        <input type="text" value="4" id="gameSize" name="gameSize"><br> -->
+        <!-- <button onclick="createBoard()">New Game</button> -->
+        <br>
+        <br>
+        <div id="gameBoard">
+        </div>
+    </div>
+</body>
+<script>
+</script>
+<script src="detectSwipe.js"></script>
+</html>

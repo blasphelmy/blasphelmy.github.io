@@ -62,12 +62,6 @@ h1{
   border-left-color: rgba(253, 66, 9, 0.226);
   margin: 7px;
 }
-.hide{
-  display: none;
-}
-.show {
-  display:block;
-}
 #console {
   position: relative;
   display: block;
@@ -157,4 +151,33 @@ button {
     top: 0px;
 		opacity: 1;
 	}
+}
+#navbar{
+  background-color: rgb(106, 104, 131);
+}
+#menuScreen {
+  background-color: rgba(129, 123, 158, 0.123);
+}
+#menuScreen > a {
+  padding: 10px;
+  color: rgb(255, 250, 233);
+  display: block;
+  text-align: center;
+}
+#menuScreen > a:hover {
+  background-color: rgba(129, 123, 158, 0.61);
+}
+#menuButton{
+  position: relative;
+  padding: 35px;
+  font-size: 50px;
+  display: inline-block;
+  float: right;
+  color: rgb(255, 250, 233);
+  cursor: pointer;
+}
+#menuButton > p {
+  transform: rotate(90deg);
+  display: block;
+  line-height: 5px;
 }

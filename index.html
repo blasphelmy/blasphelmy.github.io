@@ -23,16 +23,25 @@
     <script src="jsScoper/handlers.js"></script>
     <script src="jsScoper/eventListeners.js"></script>
     <link rel="stylesheet" href="jsScoper/style.css" />
+
     <link rel="stylesheet" href="defaults.css" />
+    <script src="menuButton.js"></script>
 
     <title>JS Scoper</title>
   </head>
   <body>
 <style>
-
 </style>
 <div id = "navbar">
-<h1 style="display: inline-block;">David Nguyen</h1> <div id="menuButton" class="rotate360deg"><p>|</p><p>|</p><p>|</p></div>
+  <div id="menuScreen" class="hide">
+    <a href="2048.html">A Simple Game of 2048</a>
+    <a href="calculatorClone.html">Macintosh Calculator Clone</a>
+    <a href="index.html">Javascript Scoper</a>
+    <hr>
+    <a href="about.html">About Me</a>
+    <a href="contact.html">Contact Me</a>
+  </div>
+<h1 style="display: inline-block">David Nguyen</h1> <div id="menuButton" onclick="menuBarClick()"><p>|</p><p>|</p><p>|</p></div>
 </div>
 <button id="runBtn" onclick="runButton()">Run Code</button>
 <button onclick="showHide()">Show/Hide Scope Visualiser</button>

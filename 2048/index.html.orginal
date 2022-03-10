@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2048</title>
+</head>
+<style>
+    gameBoardLayout {
+        position: absolute;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 105px));
+        grid-template-areas:
+            "tileContainer tileContainer tileContainer tileContainer"
+            "tileContainer tileContainer tileContainer tileContainer"
+            "tileContainer tileContainer tileContainer tileContainer"
+            "tileContainer tileContainer tileContainer tileContainer"
+        ;
+        grid-template-rows: repeat(4, minmax(0, 105px));
+        margin: auto;
+        width: 420px;
+        height: 420px;
+        background-color: rgb(182, 176, 161);
+        border-radius: 10px;
+        overflow: hidden;
+        -webkit-box-shadow: 0px 3px 36px 4px rgba(255, 255, 255, 0.43);
+        box-shadow: 0px 3px 36px 4px rgba(12, 12, 12, 0.521);
+        border-width: .7px;
+        border-style: solid;
+        border-color: gray;
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        -moz-backdrop-filter: blur(25px);
+        padding: 8px;
+        ;
+
+    }
+
+    tileContainer {
+        position: relative;
+        height: 100px;
+        width: 100px;
+        padding: 0;
+    }
+
+    .tile {
+        position: absolute;
+        top: 5px;
+        right: 2px;
+        border-radius: 10px;
+        height: 95px;
+        width: 95px;
+        background-color: rgb(255, 240, 200);
+    }
+
+    .tile>p {
+        position: relative;
+        font-size: 40px;
+        top: -10px;
+        text-align: center;
+    }
+
+    .active {
+        top: 7px;
+        background-color: rgba(243, 199, 76, 0.808);
+        z-index: 10;
+    }
+</style>
+<script>
+class MyMemoryObject {
+    tail;
+    count;
+    constructor() {
+        this.tail = null;
+        this.count = 0;
+    }
+    insertLast(data, selectedOperation) {
+        var newNode = new Node(data, selectedOperation);
+        if (this.count == 0) {
+            this.tail = newNode;
+            this.count = this.count + 1;
+        } else {
+            newNode.setPreviousNode = this.tail;
+            this.tail = newNode;
+            this.tail.getPrevious.Next = this.tail;
+            this.count = this.count + 1;
+        }
+    }
+    getThenSetPreviousState() {
+        this.tail = this.tail.getPrevious;
+        this.count = this.count - 1;
+    }
+    get getMemorydata() {
+        return this.tail.getData;
+    }
+    get getSelectedOperation() {
+        return this.tail.Next.selectedOperation;
+    }
+    get getCount() {
+        return this.count;
+    }
+}
+
+class Node {
+    Previous;
+    Next;
+    data_score;
+    data_
+    selectedOperation;
+    constructor(data, selectedOperation) {
+        this.Previous = null;
+        this.Next = null;
+
+        this.data = data;
+        this.selectedOperation = selectedOperation;
+    }
+    set setPreviousNode(newNode) {
+        this.Previous = newNode;
+    }
+    get getPrevious() {
+        return this.Previous;
+    }
+    get getData() {
+        return this.data;
+    }
+}
+</script>
+<script>
+    class gameBoard {
+        defaultArray;
+        memoryLane;
+        score;
+        constructor() {
+            this.defaultArray =
+                // [[0,64,4,8],
+                // [[64,64,4,8],
+                // [[2,2,4,8],
+                // [[2, 2, 4, 4],
+                // [[2,4,8,16],
+                // [[4,64,4,8],
+                [[0, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0]];
+            this.memoryLane =
+                [[false, false, false, false], //should trigger true only when two numbers are merged. never when a number is just moving
+                [false, false, false, false],
+                [false, false, false, false],
+                [false, false, false, false]];
+
+            this.score = 0;
+
+        }
+        calculateScore(value){
+
+        }
+        displayArray() {
+            for (let row = 0; row < this.defaultArray.length; row++) {
+                for (let col = 0; col < this.defaultArray[0].length; col++) {
+                    let cellID = `${row}${col}`;
+                    var element = document.getElementById(cellID);
+                    element.innerHTML = "<p></p>";
+                    element.classList.remove("active");
+                    if (this.defaultArray[row][col] != 0) {
+                        element.classList.add("active");
+                        element.innerHTML = "<p>" + this.defaultArray[row][col] + "</p>";
+                    }
+                }
+            }
+        }
+        MoveTile(direction) {
+            if (direction === "left") {
+                // console.log(this.defaultArray);
+                this.flowLeft();
+                this.displayArray();
+            } else if (direction === "right") {
+                // console.log(this.defaultArray);
+                this.flowRight();
+                this.displayArray();
+            } else if (direction === "down") {
+                // console.log(this.defaultArray);
+                this.flowDown();
+                this.displayArray();
+            } else if (direction === "up") {
+                // console.log(this.defaultArray);
+                this.flowUp();
+                this.displayArray();
+            }
+        }
+        newRandomTile() {
+
+            let thereIsAnEmptyTile = false;
+
+            for (let row = 0; row < this.defaultArray.length; row++) {
+                for (let col = 0; col < this.defaultArray[row].length; col++) {
+                    if (this.defaultArray[row][col] === 0) {
+                        thereIsAnEmptyTile = true;
+                        break;
+                    }
+                }
+                if(thereIsAnEmptyTile === true){
+                    break;
+                }
+            }
+            if (thereIsAnEmptyTile === true) {
+                var row = this.getRandomInt(4);
+                var col = this.getRandomInt(4);
+                while (this.defaultArray[row][col] != 0) {
+                    row = this.getRandomInt(4);
+                    col = this.getRandomInt(4);
+                }
+                var pickOne = this.getRandomInt(2);
+                if (pickOne === 0) {
+                    this.defaultArray[row][col] = 2;
+                } else {
+                    this.defaultArray[row][col] = 4;
+                }
+            }
+        }
+        getRandomInt(max) {
+            return Math.floor(Math.random() * max);
+        }
+        flowDown() {
+            var somethingHappened = false;
+            for (let row = 2; row >= 0; row--) {
+                for (let col = 0; col < 4; col++) { //we are on the current cell
+                    if (this.defaultArray[row][col] != 0) {
+                        console.log("###########value = " + this.defaultArray[row][col]);
+                        let value = this.defaultArray[row][col];
+                        // console.log("row_2 = " + row_2 + " col = " + col);
+                        let row_2 = row + 1;
+                        while (row_2 < 4 && this.defaultArray[row_2][col] === 0) {
+                            console.log("row_2 = " + row_2 + " col = " + col);
+                            row_2 = row_2 + 1;
+                            console.log("after add : " + row_2);
+                        }
+                        row_2 = row_2 - 1; //this is because the above loop always overshoot by one and i cant figure out the solution......being consistently incorrect is a great thing
+                        console.log("###########ends at: row_2 = " + row_2 + " col = " + col);
+
+                        if (row_2 < 3 && this.defaultArray[row_2 + 1][col] === value && this.memoryLane[row_2][col] === false) {
+                            this.defaultArray[row_2 + 1][col] = 2 * value;
+                            this.memoryLane[row_2 + 1][col] = true;
+                            this.defaultArray[row][col] = 0;
+                            somethingHappened = true;
+                        } else if (this.defaultArray[row_2][col] === 0) {
+                            this.defaultArray[row_2][col] = value;
+                            this.defaultArray[row][col] = 0;
+                            somethingHappened = true;
+                        }
+                    }
+                }
+            }
+            if (somethingHappened === true) {
+                this.newRandomTile();
+            }
+            this.resetMemoryLane();
+        }
+        flowUp() {
+            var somethingHappened = false;
+            for (let row = 1; row < this.defaultArray.length; row++) {
+                for (let col = 0; col < 4; col++) { //we are on the current cell
+                    if (this.defaultArray[row][col] != 0) {
+                        console.log("###########value = " + this.defaultArray[row][col]);
+                        let value = this.defaultArray[row][col];
+                        // console.log("row_2 = " + row_2 + " col = " + col);
+                        let row_2 = row - 1;
+                        while (row_2 > 0 && this.defaultArray[row_2][col] === 0) {
+                            console.log("row_2 = " + row_2 + " col = " + col);
+                            row_2 = row_2 - 1;
+                            console.log("after add : " + row_2);
+                        }
+                        row_2 = row_2 + 1; //this is because the above loop always overshoot by one and i cant figure out the solution......being consistently incorrect is a great thing
+                        console.log("###########ends at: row_2 = " + row_2 + " col = " + col);
+
+                        if (this.defaultArray[row_2 - 1][col] === value && this.memoryLane[row_2 - 1][col] === false) {
+                            this.defaultArray[row_2 - 1][col] = value * 2;
+                            this.memoryLane[row_2 - 1][col] = true;
+                            this.defaultArray[row][col] = 0;
+                            somethingHappened = true;
+                        } else if (this.defaultArray[row_2 - 1][col] === 0) {
+                            this.defaultArray[row_2 - 1][col] = value;
+                            this.defaultArray[row][col] = 0;
+                            somethingHappened = true;
+                        } else if (this.defaultArray[row_2][col] === 0) {
+                            this.defaultArray[row_2][col] = value;
+                            this.defaultArray[row][col] = 0;
+                            somethingHappened = true;
+                        }
+
+                    }
+                }
+            }
+            if (somethingHappened === true) {
+                this.newRandomTile();
+            }
+            this.resetMemoryLane();
+        }
+        flowLeft() {
+            var somethingHappened = false;
+            for (let col = 1; col < this.defaultArray[0].length; col++) {
+                for (let row = 0; row < this.defaultArray.length; row++) { //we are on the current cell
+                    if (this.defaultArray[row][col] != 0) { //checking if cell is null
+                        let value = this.defaultArray[row][col];
+                        // console.log(value);
+                        let col_2 = col;
+                        while (this.defaultArray[row][col_2 - 1] === 0) {
+                            // console.log("next col over = " + this.defaultArray[row][col_2 - 1]);
+                            col_2 = col_2 - 1;
+                        }
+                        // console.log("col_2 = " + col_2);
+                        if (this.defaultArray[row][col_2 - 1] === value && this.memoryLane[row][col_2 - 1] == false) {
+                            this.defaultArray[row][col_2 - 1] = 2 * value;
+                            this.memoryLane[row][col_2 - 1] = true;
+                            this.defaultArray[row][col] = 0;
+                            somethingHappened = true;
+                        } else if (this.defaultArray[row][col_2] === 0) {
+                            this.defaultArray[row][col_2] = value;
+                            this.defaultArray[row][col] = 0;
+                            somethingHappened = true;
+                        }
+                    }
+                }
+            }
+            if (somethingHappened === true) {
+                this.newRandomTile();
+            }
+            this.resetMemoryLane();
+        }
+        flowRight() {
+            var somethingHappened = false;
+            for (let col = 2; col >= 0; col--) {
+                for (let row = 0; row < this.defaultArray.length; row++) { //we are on the current cell
+                    if (this.defaultArray[row][col] != 0) { //checking if cell is null
+                        let value = this.defaultArray[row][col];
+                        // console.log(value);
+                        let col_2 = col;
+                        while (this.defaultArray[row][col_2 + 1] === 0) {
+                            // console.log("next col over = " + this.defaultArray[row][col_2 - 1]);
+                            col_2 = col_2 + 1;
+                        }
+                        // console.log("col_2 = " + col_2);
+                        if (this.defaultArray[row][col_2 + 1] === value && this.memoryLane[row][col_2 + 1] == false) {
+                            this.defaultArray[row][col_2 + 1] = 2 * value;
+                            this.memoryLane[row][col_2 + 1] = true;
+                            this.defaultArray[row][col] = 0;
+                            somethingHappened = true;
+                        } else if (this.defaultArray[row][col_2] === 0) {
+                            this.defaultArray[row][col_2] = value;
+                            this.defaultArray[row][col] = 0;
+                            somethingHappened = true;
+                        }
+                    }
+                }
+            }
+            if (somethingHappened === true) {
+                this.newRandomTile();
+            }
+            this.resetMemoryLane();
+        }
+        resetMemoryLane() {
+            this.memoryLane =
+                [[false, false, false, false],
+                [false, false, false, false],
+                [false, false, false, false],
+                [false, false, false, false]];
+            console.log(this.memoryLane);
+        }
+    }
+</script>
+<script>
+    var newGame = new gameBoard();
+
+    function initializeStuff() {
+        centerWindow();
+        initializeAndCenterCells();
+        this.newGame.newRandomTile();
+        this.newGame.displayArray();
+
+    }
+    function centerWindow() {
+        let w = window.innerWidth;
+        let h = window.innerHeight;
+        let element = document.getElementById("gameBoard");
+        let elementWidth = element.getBoundingClientRect().width;
+        let elementHeight = element.getBoundingClientRect().height;
+        element.style.top = (innerHeight * .25) + "px";
+        element.style.left = ((innerWidth - elementWidth) * .5) + "px";
+
+    }
+    function centerToParent(element) {
+        console.log(element.parentElement.nodeName);
+
+    }
+    function initializeAndCenterCells() {
+        var tiles = document.getElementsByTagName("tile");
+        for (var i = 0; i < tiles.length; i++) {
+            tiles[i] = centerToParent(tiles[i]);
+        }
+    }
+    window.addEventListener('keydown', function (event) {
+        if (event.keyCode === 37) {
+            newGame.MoveTile("left");
+        } if (event.keyCode === 39) {
+            newGame.MoveTile("right");
+        } if (event.keyCode === 40) {
+            newGame.MoveTile("down");
+        } if (event.keyCode === 38) {
+            newGame.MoveTile("up");
+        }
+        // console.log(event.keyCode);
+    });
+</script>
+<body onload="initializeStuff()">
+    <gameBoardLayout id="gameBoard">
+        <!-- row 0 -->
+        <tileContainer>
+        <div id="00" class="tile">
+            <p></p>
+        </div>
+    </tileContainer>
+    <tileContainer>
+        <div id="01" class="tile">
+            <p></p>
+        </div>
+    </tileContainer>
+    <tileContainer>
+        <div id="02" class="tile">
+            <p></p>
+        </div>
+    </tileContainer>
+    <tileContainer>
+        <div id="03" class="tile">
+            <p></p>
+        </div>
+    </tileContainer>
+        <!-- row 1 -->
+        <tileContainer>
+            <div id="10" class="tile">
+                <p></p>
+            </div>
+        </tileContainer>
+        <tileContainer>
+            <div id="11" class="tile">
+                <p></p>
+            </div>
+        </tileContainer>
+        <tileContainer>
+            <div id="12" class="tile">
+                <p></p>
+            </div>
+        </tileContainer>
+        <tileContainer>
+            <div id="13" class="tile">
+                <p></p>
+            </div>
+        </tileContainer>
+        <!-- row 2 -->
+        <tileContainer>
+            <div id="20" class="tile">
+                <p></p>
+            </div>
+        </tileContainer>
+        <tileContainer>
+            <div id="21" class="tile">
+                <p></p>
+            </div>
+        </tileContainer>
+        <tileContainer>
+            <div id="22" class="tile">
+                <p></p>
+            </div>
+        </tileContainer>
+        <tileContainer>
+            <div id="23" class="tile">
+                <p></p>
+            </div>
+        </tileContainer>
+        <!-- row 3 -->
+        <tileContainer>
+            <div id="30" class="tile">
+                <p></p>
+            </div>
+        </tileContainer>
+        <tileContainer>
+            <div id="31" class="tile">
+                <p></p>
+            </div>
+        </tileContainer>
+        <tileContainer>
+            <div id="32" class="tile">
+                <p></p>
+            </div>
+        </tileContainer>
+        <tileContainer>
+            <div id="33" class="tile">
+                <p></p>
+            </div>
+        </tileContainer>
+    </gameBoardLayout>
+</body>
+</html>
