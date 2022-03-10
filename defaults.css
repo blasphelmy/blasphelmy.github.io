@@ -1,0 +1,32 @@
+#navbar{
+    background-color: rgb(106, 104, 131);
+  }
+  #menuButton{
+    position: relative;
+    padding: 35px;
+    font-size: 50px;
+    display: inline-block;
+    float: right;
+    color: white;
+    cursor: pointer;
+  }
+  #menuButton > p {
+    transform: rotate(90deg);
+    display: block;
+    line-height: 5px;
+  }
+  .rotate360deg{
+    position: relative;
+      animation-name: rotate360;
+      animation-iteration-count: 1;
+      animation-timing-function:ease;
+      animation-duration:500ms;
+  }
+  @keyframes rotate360 {
+      0% {
+        transform: rotate(90deg);
+      }
+      100% {
+        transform: rotate(180deg);
+      }
+  }

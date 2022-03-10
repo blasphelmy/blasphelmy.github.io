@@ -23,29 +23,16 @@
     <script src="jsScoper/handlers.js"></script>
     <script src="jsScoper/eventListeners.js"></script>
     <link rel="stylesheet" href="jsScoper/style.css" />
+    <link rel="stylesheet" href="defaults.css" />
 
-    <title>parse</title>
+    <title>JS Scoper</title>
   </head>
   <body>
 <style>
-#navbar{
-  background-color: rgb(106, 104, 131);
-}
-#menuButton{
-  position: relative;
-  transform: rotate(1);
-  font-size: 50px;
-  display: inline-block;
-  float: right;
-  color: white;
-}
-#menuButton > p {
-  display: inline;
-  margin-left: -50px;
-}
+
 </style>
 <div id = "navbar">
-<h1 style="display: inline-block;">David Nguyen</h1> <div id="menuButton"><p>|</p><p>|</p><p>|</p></div>
+<h1 style="display: inline-block;">David Nguyen</h1> <div id="menuButton" class="rotate360deg"><p>|</p><p>|</p><p>|</p></div>
 </div>
 <button id="runBtn" onclick="runButton()">Run Code</button>
 <button onclick="showHide()">Show/Hide Scope Visualiser</button>
