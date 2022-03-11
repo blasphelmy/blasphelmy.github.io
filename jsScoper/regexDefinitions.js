@@ -42,6 +42,12 @@ function detectFunctionCalls(string){
     }
   }
   function detectConsoleLog(string){
+    var isConsole = false;
     var detectConsole = new RegExp(/^([ ]*)+(?:[console])+([ ]*)+([.])+([ ]*)+(?:log)/gm);
-    return detectConsole.test(string);
+    
+    if(detectConsole.test(string)){
+      isConsole = true;
+    }
+
+    return isConsole;
   }
