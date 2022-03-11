@@ -152,35 +152,3 @@ button {
 		opacity: 1;
 	}
 }
-#navbar{
-  background-color: rgb(106, 104, 131);
-  -webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.22); 
-  box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.22);
-}
-#menuScreen {
-  background-color: rgba(129, 123, 158, 0.123);
-}
-#menuScreen > a {
-  text-decoration: none;
-  padding: 10px;
-  color: rgb(255, 250, 233);
-  display: block;
-  text-align: center;
-}
-#menuScreen > a:hover {
-  background-color: rgba(129, 123, 158, 0.61);
-}
-#menuButton{
-  position: relative;
-  padding: 35px;
-  font-size: 50px;
-  display: inline-block;
-  float: right;
-  color: rgb(255, 250, 233);
-  cursor: pointer;
-}
-#menuButton > p {
-  transform: rotate(90deg);
-  display: block;
-  line-height: 5px;
-}
