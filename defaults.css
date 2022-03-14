@@ -42,8 +42,8 @@ hr {
 }
 #menuButtonContainer{
   position: relative;
-  top: 1px;
-  padding: 35px;
+  top: 0px;
+  padding: 45px;
   font-size: 50px;
   display: inline-block;
   float: right;
@@ -51,10 +51,10 @@ hr {
   cursor: pointer;
 }
 #menuButton > p {
-  font-size: 30px;
+  font-size: 20px;
   transform: rotate(90deg);
   display: block;
-  line-height: 5px;
+  line-height: 0px;
 }
 * {
   box-sizing: border-box;
