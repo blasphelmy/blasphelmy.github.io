@@ -19,9 +19,6 @@
 #menuScreen{
     background: rgb(0,0,0);
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgb(0, 0, 0, .4) 100%);  
-    /* backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    -moz-backdrop-filter: blur(4px); */
 }
 #menuScreen > a:hover {
     background-color: rgba(0,0,0,.1);
@@ -30,12 +27,23 @@
     width: 100%;
     padding-bottom: 400px;
     background-image: url(/images/cali2021.jpeg);
-    background-size: cover;
-    background-position-y: 50%;
+    background-size:cover;
+    background-position-y: 70%;
     background-position-x: 50%;
     -webkit-box-shadow: inset 0px 0px 250px 0px #000000; 
     box-shadow: inset 0px 0px 250px 0px #000000;
 }
+@media (max-width:900px) {
+    #navWrapper {
+        padding-bottom: 300px;
+        background-image: url(/images/cali2021_c.jpeg);
+    }
+}
 .clickedBG {
     background-color: none;
+}
+.blur {
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    -moz-backdrop-filter: blur(7px);
 }

@@ -1,14 +1,17 @@
 function menuBarClick(){
   var element = document.getElementById("menuScreen");
+  var navBar = document.getElementById("navbar");
   var menuButton = document.getElementById("menuButton");
   var menuButtContainer = document.getElementById("menuButtonContainer");
   if(element.classList.contains("hide")){
       element.classList.remove("hide");
       element.classList.add("show");
+      // navBar.classList.add("blur");
       menuButtContainer.classList.add("clickedBG");
   }else{
     element.classList.remove("show");
       element.classList.add("hide");
+      // navBar.classList.remove("blur");
       setTimeout(() => {
         menuButtContainer.classList.remove("clickedBG");
       }, 100);
