@@ -5,53 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Me</title>
-    <link rel="stylesheet" href="defaults.css" />
+    <link rel="stylesheet" href="css/defaults.css" />
+    <link rel="stylesheet" href="css/about.css" /> 
     <link rel="stylesheet" href="css/menuButton.css" />
     <script src="menuButton.js"></script>
 </head>
 <body>
 <style>
-#navbar {
-    position: absolute;
-    width: 100%;
-    background: rgb(0,0,0);
-    background: linear-gradient(0deg, rgba(122, 122, 122, 0) 0%, rgba(106, 104, 131,0.6) 100%);
-    border: none;
-    box-shadow: none;
-    /* min-height: 300px;
-    background-image: url(/images/cover-photo.jpg);
-    background-size: cover;
-    background-position-y:70%; */
-    /* backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    -moz-backdrop-filter: blur(10px); */
-}
-#navbar > h1{
-    color: rgb(255, 247, 223);
-}
-#menuScreen{
-    background: rgb(0,0,0);
-    background: linear-gradient(0deg, rgba(106, 104, 131,0.6) 0%, rgba(106, 104, 131,1) 100%);  
-    /* backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    -moz-backdrop-filter: blur(4px); */
-}
-#menuScreen > a:hover {
-    background-color: rgba(0,0,0,.1);
-}
-#navWrapper {
-    width: 100%;
-    padding-bottom: 350px;
-    background-image: url(/images/cali2021.jpeg);
-    background-size: cover;
-    background-position-y: 70%;
-    background-position-x: 50%;
-    -webkit-box-shadow: inset 0px 0px 250px 0px #000000; 
-box-shadow: inset 0px 0px 250px 0px #000000;
-}
-.clickedBG {
-    background-color: none;
-}
 #mainBody {
     position: relative;
     width: fit-content;
@@ -115,6 +75,32 @@ p {
     }
 }
 </style>
+<script>
+window.addEventListener("scroll", function(){
+    var backgroundY = 60;
+    var element = document.getElementById("navWrapper");
+    backgroundY = 60 + window.scrollY/15;
+    if(backgroundY > 100){
+        backgroundY = 100;
+    }else if(backgroundY < 0){
+        backgroundY = 0;
+    }
+    element.style.setProperty("background-position-y", backgroundY + "%");
+
+});
+window.addEventListener("touchstart", function(){
+    var backgroundY = 60;
+    var element = document.getElementById("navWrapper");
+    backgroundY = 60 + window.scrollY/15;
+    if(backgroundY > 100){
+        backgroundY = 100;
+    }else if(backgroundY < 0){
+        backgroundY = 0;
+    }
+    element.style.setProperty("background-position-y", backgroundY + "%");
+
+});
+</script>
 <div id="navWrapper">
     <div id="menuScreen" class="hide">
         <a href="2048.html">A Simple Game of 2048</a>

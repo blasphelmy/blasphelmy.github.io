@@ -136,12 +136,12 @@ button {
 	opacity: 1;
 	animation-name: slideInKF;
 	animation-iteration-count: 1;
-	animation-timing-function:ease;
+	animation-timing-function:ease-in-out;
 	animation-duration:100ms;
 }
 @keyframes slideInKF {
 	0% {
-		top: 15px;
+		top: 40px;
     opacity: 0;
 	}
   70% {
