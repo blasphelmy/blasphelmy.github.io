@@ -153,6 +153,7 @@ function appendVariablesToVisulizer(Frame){
       element.classList.add("show", "fade-in");
     }, count * defaultDelay);
   }
+  count++;
 
   var newElementChild = document.createElement("p");
   newElementChild.innerHTML = "Active Variables :";

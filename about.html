@@ -9,15 +9,16 @@
     <link rel="stylesheet" href="css/about.css" /> 
     <link rel="stylesheet" href="css/menuButton.css" />
     <script src="menuButton.js"></script>
+    <script src="parallax.js"></script>
 </head>
 <body>
 <style>
 #mainBody {
     position: relative;
     width: fit-content;
-    margin-left: 35px;
+    margin-left: 20%;
+    margin-right: 15%;
     top: -100px;
-    padding-right: 40px;
 }
 p {
     color: rgb(255, 247, 223);
@@ -27,6 +28,7 @@ p {
     display: inline-block;
     width: 120px;
     height: 120px;
+    /* left: 333px; */
     border-radius: 50px;
     background-image: url(/images/pp.jpeg);
     background-size: cover;
@@ -40,12 +42,13 @@ p {
     color: rgb(255, 247, 223);
     top: -50px;
     left: 20px;
+    /* left: 347px; */
     font-size: 35px;
     font-weight: 600;
 }
 #contentsContainer {
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     align-items:flex-start;
     width: 100%;
     margin: auto;
@@ -58,8 +61,11 @@ p {
     position: relative;
     right: 40px;
 }
+.block > p {
+    padding-right: 80px;
+}
 #contactsBlock {
-    padding-right: 150px;
+    padding-right: 70px;
 }
 @media (max-width:1100px) {
     #contentsContainer {
@@ -73,26 +79,27 @@ p {
     #Name {
         font-size: 20px;
     }
+    #profilePicture{
+        left: 0px;
+    }
+    #Name {
+        left: 0px;
+    }
+    #mainBody {
+        margin-left: 40px;
+        margin-right:0;
+    }
+    .block > p {
+        padding-right: 40px;
+    }   
 }
 </style>
 <script>
-window.addEventListener("scroll", function(){
-    var element = document.getElementById("navWrapper");
-    var backgroundY = 70;
-    backgroundY = backgroundY + window.scrollY/15;
-    if(backgroundY > 100){
-        backgroundY = 100;
-    }else if(backgroundY < 0){
-        backgroundY = 0;
-    }
-    element.style.setProperty("background-position-y", backgroundY + "%");
-
-});
 </script>
 <div id="navWrapper">
     <div id="menuScreen" class="hide">
-        <a href="2048.html">A Simple Game of 2048</a>
         <a href="calculatorClone.html">Macintosh Calculator Clone</a>
+        <a href="2048.html">A Simple Game of 2048</a>
         <a href="index.html">Javascript Scoper</a>
         <hr>
         <a href="about.html">About Me</a>
