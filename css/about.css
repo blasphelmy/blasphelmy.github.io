@@ -28,10 +28,10 @@
 }
 #navWrapper {
     width: 100%;
-    padding-bottom: 350px;
+    padding-bottom: 400px;
     background-image: url(/images/cali2021.jpeg);
     background-size: cover;
-    background-position-y: 60%;
+    background-position-y: 50%;
     background-position-x: 50%;
     -webkit-box-shadow: inset 0px 0px 250px 0px #000000; 
     box-shadow: inset 0px 0px 250px 0px #000000;

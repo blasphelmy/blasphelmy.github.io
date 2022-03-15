@@ -79,7 +79,7 @@ p {
 window.addEventListener("scroll", function(){
     var backgroundY = 60;
     var element = document.getElementById("navWrapper");
-    backgroundY = 60 + window.scrollY/15;
+    backgroundY = backgroundY + window.scrollY/15;
     if(backgroundY > 100){
         backgroundY = 100;
     }else if(backgroundY < 0){
@@ -88,7 +88,7 @@ window.addEventListener("scroll", function(){
     element.style.setProperty("background-position-y", backgroundY + "%");
 
 });
-window.addEventListener("touchstart", function(){
+window.addEventListener("touchstart0", function(){
     var backgroundY = 60;
     var element = document.getElementById("navWrapper");
     backgroundY = 60 + window.scrollY/15;
