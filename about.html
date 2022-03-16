@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/about.css" /> 
     <link rel="stylesheet" href="css/menuButton.css" />
     <script src="menuButton.js"></script>
-    <script src="parallax.js"></script>
+    <script src="js/parallaxalizeNavigation.js"></script>
 </head>
 <body>
 <style>
@@ -17,11 +17,8 @@
     position: relative;
     width: fit-content;
     margin-left: 15%;
-    margin-right: 10%;
+    margin-right: 15%;
     top: -100px;
-}
-p {
-    color: rgb(255, 247, 223);
 }
 #profilePicture{
     position: relative;
@@ -39,12 +36,14 @@ p {
 #Name {
     position: relative;
     display: inline-block;
-    color: rgb(255, 247, 223);
     top: -50px;
     left: 20px;
     /* left: 347px; */
     font-size: 35px;
     font-weight: 600;
+}
+#Name > p{
+    color: rgb(255, 247, 223);
 }
 #contentsContainer {
     display: flex;
@@ -57,35 +56,54 @@ p {
     position: relative;
     display: inline-block;
 }
-.block > h1 {
+.block > h1,h2,h3 {
     position: relative;
     right: 40px;
+    text-decoration: underline;
 }
 .block > p {
     padding-right: 70px;
+    line-height: 25px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    color: rgb(255, 247, 223);
+}
+.block > .pHeaders {
+    color: rgb(193, 179, 255);
+    font-weight: bold;
+}
+#contactsBlock > .pHeaders {
+    color: rgb(193, 179, 255);
+    font-weight: bold;
+    padding-left: 0px;
 }
 #contactsBlock {
+    color: rgb(255, 247, 223);
+    width: 300px;
 }
 .fixContactBlock {
     position: fixed;
-    right: 0px;
+    right: 170px;
     top: 0px;
-    width: 420px;
+    width: 300px;
 }
 .dummy {
     display: none;
     opacity: 0;
     height: 0;
+    width: 300px;
 }
 @media (max-width:1100px) {
     #contentsContainer {
         display: flex;
-        flex-direction: column;
+        flex-direction: column-reverse;
         align-items:flex-start;
     }
     #contactsBlock {
-        position: relative;
+        display: inline-block;
         padding: 0;
+        width: 100%;
+        padding-right: 40px;
     }
     #Name {
         font-size: 20px;
@@ -104,17 +122,93 @@ p {
         padding-right: 40px;
     }   
 }
+.KFfadeout{
+    animation-name: fadeout;
+    animation-iteration-count: 1;
+    animation-timing-function:ease;
+    animation-duration:75ms;
+}
+@keyframes fadeout {
+    0% {
+      opacity: 1;
+      /* transform: scale(1); */
+    }
+    100% {
+      opacity: 0;
+      /* transform: scale(.8); */
+    }
+}
+.KFfadein{
+    animation-name: fadein;
+    animation-iteration-count: 1;
+    animation-timing-function:ease;
+    animation-duration:75ms;
+}
+@keyframes fadein {
+    0% {
+      opacity: 0;
+      /* transform: scale(.8); */
+    }
+    100% {
+        opacity: 1;
+        /* transform: scale(1); */
+    }
+}
+.skillBlocks {
+    display: inline-block;
+    padding: 10px;
+    background-color: rgb(104, 95, 145);
+    border-radius: 4px;
+    margin-top: 10px;
+}
+.label {
+    position: relative;
+    background-color: rgb(214, 205, 255);
+    top: -20px;
+    width: 100%;
+    padding: 5px;
+    font-size: 15px;
+    border-radius: 5px;
+    border-style: none;   
+}
+textarea {
+    position: relative;
+    background-color: rgb(214, 205, 255);
+    top: -20px;
+    width: 100%;
+    height: 200px;
+    padding: 5px;
+    font-size: 15px;
+    border-radius: 5px;
+    border-style: none;
+}
 </style>
 <script>
 window.addEventListener("scroll", function(){
     var contactBlockElement = document.getElementById("contactsBlock");
     var dummyBlock = document.getElementsByClassName("dummy")[0];
-    if(this.window.scrollY >= 400 && window.innerWidth > 1100 && !contactBlockElement.classList.contains("fixContactBlock")){
-        contactBlockElement.classList.add("fixContactBlock");
+    var navMenuHeight = document.getElementById("navWrapper").offsetHeight;
+    if(this.window.scrollY >= navMenuHeight && window.innerWidth > 1100 && !contactBlockElement.classList.contains("fixContactBlock")){
+          setTimeout(() => {
+           contactBlockElement.classList.remove("KFfadeout");
+           contactBlockElement.classList.add("KFfadein"); 
+           setTimeout(() => {
+            contactBlockElement.classList.remove("KFfadein")
+           }, 75);
+        }, 75);
         dummyBlock.style.display = "block";
-    }else if(this.window.scrollY < 400 && window.innerWidth > 1100 && contactBlockElement.classList.contains("fixContactBlock")){
-        contactBlockElement.classList.remove("fixContactBlock");
+        contactBlockElement.classList.add("fixContactBlock", "KFfadeout");
+    }else if(this.window.scrollY < navMenuHeight && window.innerWidth > 1100 && contactBlockElement.classList.contains("fixContactBlock")){
+        setTimeout(() => {
+           contactBlockElement.classList.remove("KFfadeout");
+           contactBlockElement.classList.add("KFfadein"); 
+           setTimeout(() => {
+            contactBlockElement.classList.remove("KFfadein")
+           }, 75);
+        }, 75);
         dummyBlock.style.display = "none";
+        contactBlockElement.classList.remove("fixContactBlock");
+        contactBlockElement.classList.add("KFfadeout");
     }
 });
 </script>
@@ -125,11 +219,13 @@ window.addEventListener("scroll", function(){
         <a href="index.html">Javascript Scoper</a>
         <hr>
         <a href="about.html">About Me</a>
-        <a href="contact.html">Contact Me</a>
+        <a href="about.html#experience">Experience</a>
+        <a href="about.html#projects">Projects</a>
+        <a href="about.html#contactsBlock">Contact Me</a>
         <hr>
     </div>
     <div id = "navbar">
-        <h1 style="display: inline-block">DN</h1> <div id = "menuButtonContainer" onclick="menuBarClick()"><div id="menuButton"><p>|</p><p>|</p><p>|</p></div></div>
+        <h1 style="display: inline-block;">DN</h1> <div id = "menuButtonContainer" onclick="menuBarClick()"><div id="menuButton"><p>|</p><p>|</p><p>|</p></div></div>
     </div>
 </div>
 <div id="mainBody">
@@ -139,34 +235,98 @@ window.addEventListener("scroll", function(){
     </div> -->
     <div id="contentsContainer">
         <div class="block dummy">
-            <h1 id="name">Contact Information</h1>
+            <h1 >Contact Information</h1>
         </div> 
         <div id="contactsBlock" class="block">
-            <h1 id="name">Contact Information</h1>
-            <div>
-                <p>Send me an Email!</p>
-                <label for="Subject"><p>Subject</p></label>
+            <h1>Contact Information</h1>
+                <p class="pHeaders">Subject</p>
                 <input type="text" name="Subject" class="label"><br>
-            </div>
-            <button onclick="openEmailClient()">New Game</button>
+                <p class="pHeaders">Your Message Here</p>
+                <textarea id="code" name="code">
+                </textarea>
+            <button onclick="openEmailClient()">Send Email</button>
         </div> 
         <div id="contents" class="block">
-            <h1 id="name">Hello..!</h1>
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-            <h1 id="name">Hello..!</h1>
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+            <h1>About Me</h1>
+            <h2>
+                Skills
+            </h2>
+            <p class="pHeaders">
+                <span class="skillBlocks">HTML/CSS</span>
+                <span class="skillBlocks">Javascript</span>
+                <span class="skillBlocks">PHP</span>
+                <span class="skillBlocks">SQL</span>
+                <span class="skillBlocks">Java</span>
+                <span class="skillBlocks">C#</span>
+            </p>
+            <h2>
+                Background
+            </h2>
+            <p>
+                I'm from a first generation family of immigrants. My parents had me in Vietnam and we moved 
+                here when I was really young. We did struggle a lot but we've managed to do alright for ourselves. 
+            </p>
+            <p>
+                It would be an understatement to say that I was a little lost after graduating high school. I
+                didn't really know what I wanted to do with myself or what any of my future plans are. But after being part
+                of life for a few years, I decided I wanted to go back into school, and since then I've been working really hard
+                on all of my classes. I've come to recognize the opportunities and privileges that I have and are available
+                to me, and I aim to make the most of that.
+            </p>
+            <h2>Goals</h2>
+            <p class="pHeaders">Graduate College with a Bachelor's at the very least</p>
+            <p class="pHeaders">Pursue an internship in Web Development</p>
+            <p class="pHeaders">Pursue a future career in Web Development</p>
+            <h2>
+                School
+            </h2>
+            <p class="pHeaders">- Renton Technical College</p>
+            <p>
+                Currently a second year student at Renton Technical College working on my Associates degree, which I expect to earn this spring. Moving
+                forward after that, I will also be working towards my Bachelor's here at RTC.
+            </p>
+            <h2 id="experience">
+                Work Experiences
+            </h2>
+            <p class="pHeaders">- Peer Tutor at Renton Technical College</p>
+            <p>
+                Aside from being a student, I'm also a tutor for Computer Science over at the Learning Resource and Career Center at RTC as part of my Work Study Program. As a tutor, I do my best to help students with problems regarding their CompSci projects/assignments.
+                I also help students get caught up on their homework and assignments.
+            </p>
+            <p>
+                Working here has given me the opportunity to really develop not only my skills and understanding of computer science,
+                it has also helped me develop my communication skills. While sitting there and learning how to effectively communicate CompSci concepts 
+                to a student who may have come in not understanding anything at all, is definitely an ongoing process, I feel like in my time tutoring, I have figured it out enough
+                to help those type of students make significant progress in their learning here at RTC.
+            </p>
+            <h2>
+                Current Future Prospects
+            </h2>
+            <p>
+                Next quarter, depending on how things go, I'm also expected to start a new Teaching Assistant Job position for
+                CSI 242, which is an Intro to Javascripting class. It's the one I am/have already taken this quarter and have thoroughly
+                enjoyed. 
+            </p>
+            <h3 id="projects">
+                Projects
+            </h3>
+            <p class="pHeaders">- Built my own Personal Website (HS)</p>
+            <p>
+                Built a website for myself and my photography back in high school. Its no longer available online unfortunately or do I have a copy of it. 
+                But it was basically a website made from HTML/CSS/PHP. 
+            </p>
+            <p class="pHeaders">- Built a Custom Map for Call of Duty (HS)</p>
+            <p>
+                I've also created a custom zombies map for the video game Call of Duty using the developer tools. Last time I checked, which 
+                was a few years ago, it had over 50,000 downloads. I think it only ever got that popular because it ended up being featured on a very popular
+                youtube channel, dedicated to Call of Duty Zombies. Don't ask me what the map is called so you can look it up, it's embarrassingly awful. 
+            </p>
+            <p class="pHeaders">- Built a Custom Map for Call of Duty</p>
+            <p>
+                I've also created a custom zombies map for the video game Call of Duty using the developer tools. Last time I checked, which 
+                was a few years ago, it had over 50,000 downloads. I think it only ever got that popular because it ended up being featured on a very popular
+                youtube channel, dedicated to Call of Duty Zombies. Don't ask me what the map is called so you can look it up, it's embarrassingly awful. 
+            </p>
         </div>  
     </div>
 </div>

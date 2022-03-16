@@ -51,6 +51,7 @@ hr {
   cursor: pointer;
 }
 #menuButton > p {
+  color: rgb(255, 250, 233);
   font-size: 20px;
   transform: rotate(90deg);
   display: block;
@@ -74,7 +75,7 @@ p {
   padding: 5px;
   /* why does this work??*/
 }
-h1{
+h1, h2, h3{
   color: rgb(226, 210, 255);
   padding: 40px;
 }

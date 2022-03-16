@@ -24,6 +24,7 @@
     background-color: rgba(0,0,0,.1);
 }
 #navWrapper {
+    position: relative;
     width: 100%;
     padding-bottom: 400px;
     background-image: url(/images/cali2021.jpeg);
