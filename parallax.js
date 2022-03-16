@@ -8,5 +8,4 @@ window.addEventListener("scroll", function(){
         backgroundY = 0;
     }
     element.style.setProperty("background-position-y", backgroundY + "%");
-
 });

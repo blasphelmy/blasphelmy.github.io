@@ -62,10 +62,20 @@ p {
     right: 40px;
 }
 .block > p {
-    padding-right: 80px;
+    padding-right: 70px;
 }
 #contactsBlock {
-    padding-right: 70px;
+}
+.fixContactBlock {
+    position: fixed;
+    right: 0px;
+    top: 0px;
+    width: 420px;
+}
+.dummy {
+    display: none;
+    opacity: 0;
+    height: 0;
 }
 @media (max-width:1100px) {
     #contentsContainer {
@@ -74,6 +84,7 @@ p {
         align-items:flex-start;
     }
     #contactsBlock {
+        position: relative;
         padding: 0;
     }
     #Name {
@@ -95,6 +106,17 @@ p {
 }
 </style>
 <script>
+window.addEventListener("scroll", function(){
+    var contactBlockElement = document.getElementById("contactsBlock");
+    var dummyBlock = document.getElementsByClassName("dummy")[0];
+    if(this.window.scrollY >= 400 && window.innerWidth > 1100 && !contactBlockElement.classList.contains("fixContactBlock")){
+        contactBlockElement.classList.add("fixContactBlock");
+        dummyBlock.style.display = "block";
+    }else if(this.window.scrollY < 400 && window.innerWidth > 1100 && contactBlockElement.classList.contains("fixContactBlock")){
+        contactBlockElement.classList.remove("fixContactBlock");
+        dummyBlock.style.display = "none";
+    }
+});
 </script>
 <div id="navWrapper">
     <div id="menuScreen" class="hide">
@@ -116,10 +138,18 @@ p {
         <p>COntact Info</p>
     </div> -->
     <div id="contentsContainer">
+        <div class="block dummy">
+            <h1 id="name">Contact Information</h1>
+        </div> 
         <div id="contactsBlock" class="block">
             <h1 id="name">Contact Information</h1>
-            <p>LinkedIn</p>
-        </div>  
+            <div>
+                <p>Send me an Email!</p>
+                <label for="Subject"><p>Subject</p></label>
+                <input type="text" name="Subject" class="label"><br>
+            </div>
+            <button onclick="openEmailClient()">New Game</button>
+        </div> 
         <div id="contents" class="block">
             <h1 id="name">Hello..!</h1>
             <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
