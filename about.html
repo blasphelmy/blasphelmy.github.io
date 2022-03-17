@@ -10,208 +10,17 @@
     <link rel="stylesheet" href="css/menuButton.css" />
     <script src="menuButton.js"></script>
     <script src="js/parallaxalizeNavigation.js"></script>
+    <script src="js/helpers.js"></script>
 </head>
 <body>
 <style>
-#mainBody {
-    position: relative;
-    width: fit-content;
-    margin-left: 15%;
-    margin-right: 15%;
-    top: -100px;
-}
-#profilePicture{
-    position: relative;
-    display: inline-block;
-    width: 120px;
-    height: 120px;
-    /* left: 333px; */
-    border-radius: 50px;
-    background-image: url(/images/pp.jpeg);
-    background-size: cover;
-    background-position-y: 100%;
-    -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.42); 
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.42);
-}
-#Name {
-    position: relative;
-    display: inline-block;
-    top: -50px;
-    left: 20px;
-    /* left: 347px; */
-    font-size: 35px;
-    font-weight: 600;
-}
-#Name > p{
-    color: rgb(255, 247, 223);
-}
-#contentsContainer {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items:flex-start;
-    width: 100%;
-    margin: auto;
-}
-.block {
-    position: relative;
-    display: inline-block;
-}
-.block > h1,h2,h3 {
-    position: relative;
-    right: 40px;
-    text-decoration: underline;
-}
-.block > p {
-    padding-right: 70px;
-    line-height: 25px;
-    padding-bottom: 20px;
-    padding-left: 20px;
-    color: rgb(255, 247, 223);
-}
-.block > .pHeaders {
-    color: rgb(193, 179, 255);
-    font-weight: bold;
-}
-#contactsBlock > .pHeaders {
-    color: rgb(193, 179, 255);
-    font-weight: bold;
-    padding-left: 0px;
-}
-#contactsBlock {
-    color: rgb(255, 247, 223);
-    width: 300px;
-}
-.fixContactBlock {
-    position: fixed;
-    right: 170px;
-    top: 0px;
-    width: 300px;
-}
-.dummy {
-    display: none;
-    opacity: 0;
-    height: 0;
-    width: 300px;
-}
-@media (max-width:1100px) {
-    #contentsContainer {
-        display: flex;
-        flex-direction: column-reverse;
-        align-items:flex-start;
-    }
-    #contactsBlock {
-        display: inline-block;
-        padding: 0;
-        width: 100%;
-        padding-right: 40px;
-    }
-    #Name {
-        font-size: 20px;
-    }
-    #profilePicture{
-        left: 0px;
-    }
-    #Name {
-        left: 20px;
-    }
-    #mainBody {
-        margin-left: 40px;
-        margin-right:0;
-    }
-    .block > p {
-        padding-right: 40px;
-    }   
-}
-.KFfadeout{
-    animation-name: fadeout;
-    animation-iteration-count: 1;
-    animation-timing-function:ease;
-    animation-duration:75ms;
-}
-@keyframes fadeout {
-    0% {
-      opacity: 1;
-      transform: scale(1);
-    }
-    100% {
-      opacity: 0;
-      transform: scale(.8);
-    }
-}
-.KFfadein{
-    animation-name: fadein;
-    animation-iteration-count: 1;
-    animation-timing-function:ease;
-    animation-duration:75ms;
-}
-@keyframes fadein {
-    0% {
-      opacity: 0;
-      transform: scale(.8);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-.skillBlocks {
-    display: inline-block;
-    padding: 10px;
-    background-color: rgb(104, 95, 145);
-    border-radius: 4px;
-    margin-top: 10px;
-}
-.label {
-    position: relative;
-    background-color: rgb(214, 205, 255);
-    top: -20px;
-    width: 100%;
-    padding: 5px;
-    font-size: 15px;
-    border-radius: 5px;
-    border-style: none;   
-}
-textarea {
-    position: relative;
-    background-color: rgb(214, 205, 255);
-    top: -20px;
-    width: 100%;
-    height: 200px;
-    padding: 5px;
-    font-size: 15px;
-    border-radius: 5px;
-    border-style: none;
-}
 </style>
 <script>
 window.addEventListener("scroll", function(){
-    var contactBlockElement = document.getElementById("contactsBlock");
-    var dummyBlock = document.getElementsByClassName("dummy")[0];
-    var navMenuHeight = document.getElementById("navWrapper").offsetHeight;
-    if(this.window.scrollY >= navMenuHeight && window.innerWidth > 1100 && !contactBlockElement.classList.contains("fixContactBlock")){
-          setTimeout(() => {
-           contactBlockElement.classList.remove("KFfadeout");
-           contactBlockElement.classList.add("KFfadein"); 
-           setTimeout(() => {
-            contactBlockElement.classList.remove("KFfadein")
-           }, 75);
-        }, 75);
-        dummyBlock.style.display = "block";
-        contactBlockElement.classList.add("fixContactBlock", "KFfadeout");
-    }else if(this.window.scrollY < navMenuHeight && window.innerWidth > 1100 && contactBlockElement.classList.contains("fixContactBlock")){
-        setTimeout(() => {
-           contactBlockElement.classList.remove("KFfadeout");
-           contactBlockElement.classList.add("KFfadein"); 
-           setTimeout(() => {
-            contactBlockElement.classList.remove("KFfadein")
-           }, 75);
-        }, 75);
-        dummyBlock.style.display = "none";
-        contactBlockElement.classList.remove("fixContactBlock");
-        contactBlockElement.classList.add("KFfadeout");
-    }else if(window.innerWidth <= 1100){
-        contactBlockElement.classList.remove("fixContactBlock");
-    }
+    stickyMenu();
+});
+window.addEventListener("resize", function(){
+    stickyMenu();
 });
 </script>
 <div id="navWrapper">
@@ -227,7 +36,7 @@ window.addEventListener("scroll", function(){
         <hr>
     </div>
     <div id = "navbar">
-        <a href="index.html"><h1 style="display: inline-block;">DN</h1></a> <div id = "menuButtonContainer" onclick="menuBarClick()"><div id="menuButton"><p>|</p><p>|</p><p>|</p></div></div>
+        <a href="index.html"><h1 style="display: inline-block;color: rgb(255, 247, 223);">DN</h1></a> <div id = "menuButtonContainer" onclick="menuBarClick()"><div id="menuButton"><p>|</p><p>|</p><p>|</p></div></div>
     </div>
 </div>
 <div id="mainBody">
@@ -242,11 +51,10 @@ window.addEventListener("scroll", function(){
         <div id="contactsBlock" class="block">
             <h1>Contact Information</h1>
                 <p class="pHeaders">Subject</p>
-                <input type="text" name="Subject" class="label"><br>
+                <input type="text" name="emailSubject" class="label"><br>
                 <p class="pHeaders">Your Message Here</p>
-                <textarea id="code" name="code">
-                </textarea>
-            <button onclick="openEmailClient()">Send Email</button>
+                <textarea id="code" name="emailBody"></textarea>
+            <button onclick="sendMail()">Send Email</button>
         </div> 
         <div id="contents" class="block">
             <h1>About Me</h1>
@@ -323,11 +131,30 @@ window.addEventListener("scroll", function(){
                 was a few years ago, it had over 50,000 downloads. I think it only ever got that popular because it ended up being featured on a very popular
                 youtube channel, dedicated to Call of Duty Zombies. Don't ask me what the map is called so you can look it up, it's embarrassingly awful. 
             </p>
-            <p class="pHeaders">- Built a Custom Map for Call of Duty</p>
+            <a href="2048.html"><p class="pHeaders">- A Simple Game of 2048</p></a>
             <p>
-                I've also created a custom zombies map for the video game Call of Duty using the developer tools. Last time I checked, which 
-                was a few years ago, it had over 50,000 downloads. I think it only ever got that popular because it ended up being featured on a very popular
-                youtube channel, dedicated to Call of Duty Zombies. Don't ask me what the map is called so you can look it up, it's embarrassingly awful. 
+                This version of the popular game 2048 introduces new gamemodes
+            </p>
+            <p class="pHeaders">
+                <span class="skillBlocks">HTML/CSS</span>
+                <span class="skillBlocks">Javascript</span>
+            </p>
+            <a href="calculatorClone.html"><p class="pHeaders">- Macintosh Calculator Clone</p></a>
+            <p>
+                This is my best attempt at cloning the default Macintosh Calculator
+            </p>
+            <p class="pHeaders">
+                <span class="skillBlocks">HTML/CSS</span>
+                <span class="skillBlocks">Javascript</span>
+            </p>
+            <a href="index.html"><p class="pHeaders">- Javascript Scoper</p></a>
+            <p>
+                This is a javascript visualizer. It breaks down basic javascript, then it parses it and saves the output 
+                of the javascript into a tree that we can display.
+            </p>
+            <p class="pHeaders">
+                <span class="skillBlocks">HTML/CSS</span>
+                <span class="skillBlocks">Javascript</span>
             </p>
         </div>  
     </div>
