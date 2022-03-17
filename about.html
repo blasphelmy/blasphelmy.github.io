@@ -13,16 +13,29 @@
     <script src="js/helpers.js"></script>
 </head>
 <body>
-<style>
-</style>
 <script>
 window.addEventListener("scroll", function(){
+    stickyContact();
     stickyMenu();
 });
 window.addEventListener("resize", function(){
+    stickyContact();
     stickyMenu();
 });
 </script>
+<style>
+#navWrapper_sticky {
+    position: fixed;
+    width: 100%;
+    height: 100px;
+    background-image: none;
+    padding: 0;
+    background-color: rgb(106, 104, 131);
+    -webkit-box-shadow: inset 0px 0px 0px 0px #000000; 
+    box-shadow: inset 0px 0px 0px 0px #000000;
+    z-index: 10;
+}
+</style>
 <div id="navWrapper">
     <div id="menuScreen" class="hide">
         <a href="calculatorClone.html">Macintosh Calculator Clone</a>
@@ -30,9 +43,9 @@ window.addEventListener("resize", function(){
         <a href="index.html">Javascript Scoper</a>
         <hr>
         <a href="about.html">About Me</a>
-        <a href="about.html#experience">Experience</a>
         <a href="about.html#projects">Projects</a>
         <a href="about.html#contactsBlock">Contact Me</a>
+        <a href="resume.html">Resume</a>
         <hr>
     </div>
     <div id = "navbar">
@@ -83,10 +96,6 @@ window.addEventListener("resize", function(){
                 on all of my classes. I've come to recognize the opportunities and privileges that I have and are available
                 to me, and I aim to make the most of that.
             </p>
-            <h2>Goals</h2>
-            <p class="pHeaders">Graduate College with a Bachelor's at the very least</p>
-            <p class="pHeaders">Pursue an internship in Web Development</p>
-            <p class="pHeaders">Pursue a future career in Web Development</p>
             <h2>
                 School
             </h2>
@@ -95,14 +104,10 @@ window.addEventListener("resize", function(){
                 Currently a second year student at Renton Technical College working on my Associates degree, which I expect to earn this spring. Moving
                 forward after that, I will also be working towards my Bachelor's here at RTC.
             </p>
-            <h2 id="experience">
-                Work Experiences
-            </h2>
-            <p class="pHeaders">- Peer Tutor at Renton Technical College</p>
-            <p>
-                Aside from being a student, I'm also a tutor for Computer Science over at the Learning Resource and Career Center at RTC as part of my Work Study Program. As a tutor, I do my best to help students with problems regarding their CompSci projects/assignments.
-                I also help students get caught up on their homework and assignments.
-            </p>
+            <h2>Goals</h2>
+            <p class="pHeaders">Graduate College with a Bachelor's at the very least</p>
+            <p class="pHeaders">Pursue an internship in Web Development</p>
+            <p class="pHeaders">Pursue a future career in Web Development</p>
             <p>
                 Working here has given me the opportunity to really develop not only my skills and understanding of computer science,
                 it has also helped me develop my communication skills. While sitting there and learning how to effectively communicate CompSci concepts 

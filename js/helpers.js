@@ -1,4 +1,4 @@
-function stickyMenu(){
+function stickyContact(){
     var contactBlockElement = document.getElementById("contactsBlock");
     var dummyBlock = document.getElementsByClassName("dummy")[0];
     var navMenuHeight = document.getElementById("navWrapper").offsetHeight;
@@ -26,6 +26,9 @@ function stickyMenu(){
     }else if(window.innerWidth <= 1100){
         contactBlockElement.classList.remove("fixContactBlock");
     }
+}
+function stickyMenu(){
+    
 }
 function sendMail(){
     var subjectText = document.getElementsByName("emailSubject")[0].value;
