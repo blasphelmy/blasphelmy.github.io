@@ -10,20 +10,21 @@
       crossorigin="anonymous"
     ></script>
 
-    <script src="jsScoper/lib/codemirror.js"></script>
-    <script src="jsScoper/javascript/matchbrackets.js"></script>
-    <script src="jsScoper/javascript/closebrackets.js"></script>
-    <link rel="stylesheet" href="jsScoper/lib/codemirror.css">
-    <link rel="stylesheet" href="jsScoper/theme/material-palenight.css">
-    <script src="jsScoper/javascript/javascript.js"></script>
+    <script src="https://blasphelmy.github.io/aBasicJavascriptVisualizer/jsScoper/lib/codemirror.js"></script>
+    <script src="https://blasphelmy.github.io/aBasicJavascriptVisualizer/jsScoper/javascript/matchbrackets.js"></script>
+    <script src="https://blasphelmy.github.io/aBasicJavascriptVisualizer/jsScoper/javascript/closebrackets.js"></script>
+    <link rel="stylesheet" href="https://blasphelmy.github.io/aBasicJavascriptVisualizer/jsScoper/lib/codemirror.css">
+    <link rel="stylesheet" href="https://blasphelmy.github.io/aBasicJavascriptVisualizer/jsScoper/theme/material-palenight.css">
+    <script src="https://blasphelmy.github.io/aBasicJavascriptVisualizer/jsScoper/javascript/javascript.js"></script>
 
-    <script src="jsScoper/objects.js"></script>
-    <script src="jsScoper/tools.js"></script>
-    <script src="jsScoper/regexDefinitions.js"></script>
-    <script src="jsScoper/handlers.js"></script>
-    <script src="jsScoper/eventListeners.js"></script>
-    <link rel="stylesheet" href="jsScoper/style.css" />
-
+    <script src="https://blasphelmy.github.io/aBasicJavascriptVisualizer/jsScoper/objects.js"></script>
+    <script src="https://blasphelmy.github.io/aBasicJavascriptVisualizer/jsScoper/tools.js"></script>
+    <script src="https://blasphelmy.github.io/aBasicJavascriptVisualizer/jsScoper/regexDefinitions.js"></script>
+    <script src="https://blasphelmy.github.io/aBasicJavascriptVisualizer/jsScoper/handlers.js"></script>
+    <script src="https://blasphelmy.github.io/aBasicJavascriptVisualizer/jsScoper/eventListeners.js"></script>
+    <script src="https://blasphelmy.github.io/aBasicJavascriptVisualizer/jsScoper/init.js"></script>
+    
+    <link rel="stylesheet" href="https://blasphelmy.github.io/aBasicJavascriptVisualizer/jsScoper/style.css" />
     <link rel="stylesheet" href="css/defaults.css" />
     <link rel="stylesheet" href="css/menuButton.css" />
     <script src="menuButton.js"></script>
@@ -113,89 +114,5 @@ contactMe();
 </body>
 
 <script>
-var errorDetected = false;
-var editor = null;
-var outPutEditor = null;
-var count = 1;
-var consoleline = 1;
-const defaultDelay = 250;
-function initParse() {
-  //console.clear();
-  document.getElementById("mainFrameContainer").innerHTML = "";
-  document.getElementById("console").innerHTML = "";
-  errorDetected = false;
-  count = 1;
-  consoleline = 1;
-  //step 1, we get javascript code from user as a raw string.
-  var inputString = editor.getValue() + ";";
-  //now we split the inputString into its induvidual components
-  var CallStack = breakIntoComponents(inputString);
-  outPutCallStacktoCodeEditor(CallStack);
-  var newFunction = new functionDEF("Global", 0, CallStack.length);
-  var FinalFrame = interpretCallStack(0, CallStack, new frame(newFunction, CallStack.length, count));
-  console.log(FinalFrame);
-}
-function interpretCallStack(start, array, Frame) {
-  var elementFrame = null;
-  if(Frame.id === "Global"){
-    elementFrame = document.querySelector("#mainFrameContainer");
-    elementFrame.classList.add("fade-in");
-  }else{
-    elementFrame = document.getElementById(Frame.previousNodeFrame.id + Frame.previousNodeFrame.fIndex + "ChildrenFrames");
-    setTimeout(() => {
-      elementFrame.classList.remove("hide");
-      elementFrame.classList.add("show", "fade-in");
-    }, count * defaultDelay);
-    count++;
-  }
-  createNewFrameElements(elementFrame, Frame);
-  
-  for (var index = Frame.start; index <= Frame.end && errorDetected === false; index++) {
-   console.log("index ", index);
-    //DETECT FUNCTION DECLATION TOKEN 
-    //nothing fancy, just regex and more regex
-    if (isFunctionDeclarion(array[index])) {
-     index = functionDeclaredHandler(index, array, Frame);
-      //DETECT VARIABLE DECLATION TOKEN
-    } else if (isVarDeclartion(array[index])) {
-      index = variableDeclarationHandler(index, array, Frame);
-      //DETECT VARIABLE REASSIGNMENT
-    }else if(detectStatementVariableReassignment(array[index])){
-      variableReassignmentHandler(index, array, Frame);
-    }
-    else if(detectConsoleLog(array[index])){
-      if(array[index].match(/(^console)+([ ]*)+[.]/)){
-        consoleLoghandler(index, array, Frame); 
-      }else{
-        addConsoleLine("syntax error on line " + index);
-        errorDetected = true;
-      }
-    }
-    else if(detectFunctionCalls(array[index])){
-      var originFrame = returnFrameContainingFunctionDEF(Frame, array[index]);
-      if(originFrame.returnFunctionDefinitions(array[index])){
-        var newFunctionDef = originFrame.returnFunctionDefinitions(array[index]);
-        var newFrame = new frame(newFunctionDef, index, count);
-        count++;
-        newFrame.previousNodeFrame = originFrame;
-        originFrame.addChildFrame(newFrame);
-        interpretCallStack(newFunctionDef.getStart, array, newFrame);
-      }
-      else{
-        addConsoleLine("error: on line " + index + " function definition doesn't exist!");
-        errorDetected = true;
-        return;
-      }
-    }else if(!(new RegExp(/(['}{'])/gm).test(array[index])) && index < array.length-1){
-      addConsoleLine("error: on line " + index);
-      errorDetected = true;
-      return;
-    }
-  }
-  if(Frame.id === "Global"){
-    return Frame;
-  }
-}
-function returnFunction(array) {}
   </script>
 </html>
