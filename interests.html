@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me</title>
+    <link rel="stylesheet" href="css/defaults.css" />
+    <link rel="stylesheet" href="css/about.css" />
+    <link rel="stylesheet" href="css/menuButton.css" />
+    <link rel="stylesheet" href="css/masonaryEffect.css" />
+    <script src="menuButton.js"></script>
+    <script src="js/parallaxalizeNavigation.js"></script>
+    <script src="js/helpers.js"></script>
+    <script src="js/flipper.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
+        integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous"
+        async></script>
+</head>
+
+<body>
+    <script>
+        window.addEventListener("scroll", function () {
+            stickyContact();
+            stickyMenu();
+        });
+        window.addEventListener("resize", function () {
+            stickyContact();
+            stickyMenu();
+            const elements = document.getElementsByClassName("_flipper");
+            for (let element of elements) {
+                let contentElement = document.getElementById(element.id + "_content");
+                let _backPanel = document.getElementById(element.id + "_backPanel");
+                let height = contentElement.offsetHeight;
+                _backPanel.style.setProperty("height", `${height}px`);
+            }
+        });
+        window.onload = function () {
+            setTimeout(() => {
+                let msnry = new Masonry('#cardcontainer', {});
+                let msrysect2 = new Masonry('#cardcontainersect2', {});
+                let msrysect3 = new Masonry('#cardcontainersect3', {});
+                flipper();
+                let videos = document.getElementsByTagName("video");
+                for (video of videos) {
+                    video.play();
+                }
+            }, 1000)
+        }
+    </script>
+    <style>
+        #navWrapper_sticky {
+            position: fixed;
+            width: 100%;
+            height: 100px;
+            background-image: none;
+            padding: 0;
+            background-color: rgb(106, 104, 131);
+            -webkit-box-shadow: inset 0px 0px 0px 0px #000000;
+            box-shadow: inset 0px 0px 0px 0px #000000;
+            z-index: 10;
+        }
+
+        .imgur-embed-pub {
+            height: 0px;
+        }
+    </style>
+    <div id="navWrapper">
+        <div id="menuScreen" class="hide">
+            <a href="calculatorClone.html">Macintosh Calculator Clone</a>
+            <a href="2048.html">A Simple Game of 2048</a>
+            <a href="https://blasphelmy.github.io/aBasicJavascriptVisualizer/">Javascript Scoper</a>
+            <a href="https://simplejsclasses.net">Javascript Sandbox</a>
+            <hr>
+            <a href="index.html">About Me</a>
+            <a href="index.html#projects">Projects</a>
+            <a href="index.html#contactsBlock">Contact Me</a>
+            <a
+                href="https://docs.google.com/document/d/1Tsrjx4nYVHHWbOahBMIsWJXcZB77acTAGgULYLTH1yQ/edit?usp=sharing">Resume</a>
+            <a href="interests.html">Interests</a>
+            <hr>
+        </div>
+        <div id="navbar">
+            <a href="index.html">
+                <h1 style="display: inline-block;color: rgb(255, 247, 223);">DN</h1>
+            </a>
+            <div id="menuButtonContainer" onclick="menuBarClick()">
+                <div id="menuButton">
+                    <p>|</p>
+                    <p>|</p>
+                    <p>|</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="mainBody">
+        <div id="profilePicture"></div>
+        <div id="Name">
+            <p>David Nguyen</p>
+        </div>
+        <!-- <div class="block">
+        <p>COntact Info</p>
+    </div> -->
+        <div id="contentsContainer">
+            <div id="contents" class="block">
+                <h1>Interests</h1>
+                <p>As a pastime, I like to watch and read stuff about science, math and physics, and how the world works
+                    in general. I enjoy watching documentaries about global issues, nature, astromony. I also enjoy
+                    documentaries about the history of science. I try to not venture too deep into the political stuff
+                    too much because a lot of it can be pretty rage inducing. </p>
+                <div id="cardcontainer" class="res" style="max-width:100%" data-masonry='{"percentPosition": true }'>
+
+                    <div id="1" class="card scale _flipper">
+                        <div id="1_content" style="position:relative">
+                            <iframe src="https://www.youtube.com/embed/-fusUxEPwsw" title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                            <div class="text">
+                                <p style="color: white; font-size: 13px">Tires are a dirty bussiness</p>
+                            </div>
+                        </div>
+
+                        <div class="hide _backPanel" id="1_backPanel">
+                            <div class="text">
+                                <p style="color: white; font-size: 13px">This video got me thinking; there are millions
+                                    of cars driving on the road each day in America. Eventually, we all have to replace
+                                    our tires on our cars at some point due to wear and tear. Question is, where does
+                                    all that wear and tear go?</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <p>I play a little piano. I picked it up as a hobby a few years ago and playing it has really
+                    helped gotten me through some tougher times. I also like to take photos, keep up with the
+                    maintenance of my 4 aquariums, and catch up on the latest season of Stranger Things on Netflix.</p>
+                <div id="cardcontainersect2" class="res" style="max-width:100%"
+                    data-masonry='{"percentPosition": true }'>
+
+                    <div id="2" class="card scale">
+                        <div id="2_content" style="position:relative">
+                            <!-- <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1138125544&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/davidnv" title="David" target="_blank" style="color: #cccccc; text-decoration: none;">David</a> · <a href="https://soundcloud.com/davidnv/one-summers-day-piano-cover" title="One Summers Day (Piano Cover)" target="_blank" style="color: #cccccc; text-decoration: none;">One Summers Day (Piano Cover)</a></div> -->
+                            <iframe src="https://www.youtube.com/embed/J_nDCVuG0sY?autoplay=1&mute=1"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                            <div class="text">
+                                <p style="color: white; font-size: 13px">2 Arabesque No. 1 by Claude Debussy</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="3" class="card scale">
+                        <div id="3_content" style="position:relative">
+                            <img src="images/faq1.jpeg">
+                            <div class="text">
+                                <p style="color: white; font-size: 13px">I set up my first aquarium about one year ago
+                                    in the middle of the pandemic. Thanks <a
+                                        href="https://www.youtube.com/watch?v=sQBc85gg7HU">@Foo the Flowerhorn</a> for
+                                    sparking my interests</p>
+                            </div>
+                        </div>
+                        <div class="hide _backPanel" id="3_backPanel">
+                        </div>
+                    </div>
+
+                    <div id="4" class="card scale">
+                        <div id="4_content" style="position:relative">
+                            <img src="images/faq2.jpg">
+                            <div class="text">
+                                <p style="color: white; font-size: 13px">Here it is a few months later. There's probably
+                                    a few hundred shrimps in there</p>
+                            </div>
+                        </div>
+                        <div class="hide _backPanel" id="4_backPanel">
+                        </div>
+                    </div>
+
+                    <div id="5" class="card scale">
+                        <div id="5_content" style="position:relative">
+                            <iframe src="https://www.youtube.com/embed/8DdaONI5Mv4?autoplay=1&mute=1"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                            <div class="text">
+                                <p style="color: white; font-size: 13px">Shrimps feeding time!</p>
+                            </div>
+                        </div>
+
+                        <div class="hide _backPanel" id="5_backPanel">
+                            <div class="text">
+                                <p style="color: white; font-size: 13px">This video was shot with a macro lens
+                                    attachment for an 85mm on a Nikon d600</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="6" class="card scale">
+                        <div id="6_content" style="position:relative">
+                            <img src="images/DHN_1232.jpg">
+                            <div class="text">
+                                <p style="color: white; font-size: 13px">One year later, one tank turns into three more
+                                    tanks including this one</p>
+                            </div>
+                        </div>
+                        <div class="hide _backPanel" id="6_backPanel">
+                        </div>
+                    </div>
+
+                </div>
+
+                <h1>Photos</h1>
+                <p>I can be pretty nifty when it comes to using photoshop</p>
+                <div id="cardcontainer3" class="res" style="max-width:100%" data-masonry='{"percentPosition": true }'>
+<!--                     
+                    <div id="7" class="card scale _flipper">
+                        <div id="7_content" style="position:relative">
+                            <img src="images/gradpic1.jpg">
+                        </div>
+                        <div class="hide _backPanel" id="7_backPanel">
+                            <div class="text">
+                                <p style="color: white; font-size: 13px">Vanessa's and Ariana's 2020 grad pics </p>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div id="8" class="card scale _flipper">
+                        <div id="8_content" style="position:relative">
+                            <img src="images/gradpic2.jpg">
+                            <!-- <div class="text">
+                                <p style="color: white; font-size: 13px">Graduation Pictures</p>
+                            </div> -->
+                        </div>
+                        <div class="hide _backPanel" id="8_backPanel">
+                            <div class="text">
+                                <p style="color: white; font-size: 13px">Vanessa's and Ariana's 2020 grad pics </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="9" class="card scale _flipper">
+                        <div id="9_content" style="position:relative">
+                            <img src="images/gradpic3.jpg">
+                            <!-- <div class="text">
+                                <p style="color: white; font-size: 13px">Graduation Pictures</p>
+                            </div> -->
+                        </div>
+                        <div class="hide _backPanel" id="9_backPanel">
+                            <div class="text">
+                                <p style="color: white; font-size: 13px">Vanessa's and Ariana's 2020 grad pics </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="10" class="card scale _flipper">
+                        <div id="10_content" style="position:relative">
+                            <img src="images/alpaca.jpeg">
+                            <!-- <div class="text">
+                                <p style="color: white; font-size: 13px">Graduation Pictures</p>
+                            </div> -->
+                        </div>
+                        <div class="hide _backPanel" id="10_backPanel">
+                            <div class="text">
+                                <p style="color: white; font-size: 13px">A day trip to the Washington's Alpaca Farm!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="11" class="card scale">
+                        <div id="11_content" style="position:relative">
+                            <img src="images/alpaca2.jpeg">
+                            <div class="text">
+                                <p style="color: white; font-size: 13px">What a handsome fella</p>
+                            </div>
+                        </div>
+                        <div class="hide _backPanel" id="11_backPanel">
+                            <div class="text">
+                                <p style="color: white; font-size: 13px">What a handsome fella</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="12" class="card scale _flipper">
+                        <div id="12_content" style="position:relative">
+                            <img src="images/thailand2019.jpg">
+                            <!-- <div class="text">
+                                <p style="color: white; font-size: 13px">Graduation Pictures</p>
+                            </div> -->
+                        </div>
+                        <div class="hide _backPanel" id="12_backPanel">
+                            <div class="text">
+                                <p style="color: white; font-size: 13px">Thailand - A trip to SouthEast Asia with my family in 2019</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="13" class="card scale _flipper">
+                        <div id="13_content" style="position:relative">
+                            <img src="images/thailand2019_2.jpg">
+                            <!-- <div class="text">
+                                <p style="color: white; font-size: 13px">Graduation Pictures</p>
+                            </div> -->
+                        </div>
+                        <div class="hide _backPanel" id="13_backPanel">
+                            <div class="text">
+                                <p style="color: white; font-size: 13px">Thailand - A trip to SouthEast Asia with my family in 2019</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="14" class="card scale _flipper">
+                        <div id="14_content" style="position:relative">
+                            <iframe src="https://www.youtube.com/embed/9tBpwnuK2Ds?autoplay=1&mute=1"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </div>
+                        <div class="hide _backPanel" id="14_backPanel">
+                            <div class="text">
+                                <p style="color: white; font-size: 13px">A Stormy Night in Vietnam</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="15" class="card scale _flipper">
+                        <div id="15_content" style="position:relative">
+                            <img src="images/vietnam2019.jpg">
+                            <!-- <div class="text">
+                                <p style="color: white; font-size: 13px">Graduation Pictures</p>
+                            </div> -->
+                        </div>
+                        <div class="hide _backPanel" id="15_backPanel">
+                            <div class="text">
+                                <p style="color: white; font-size: 13px">Vietnam - A trip to SouthEast Asia with my family in 2019. This was a reserve off the coast near Da Nang</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="16" class="card scale _flipper">
+                        <div id="16_content" style="position:relative">
+                            <img src="images/vietnam2019_2.jpg">
+                            <!-- <div class="text">
+                                <p style="color: white; font-size: 13px">Graduation Pictures</p>
+                            </div> -->
+                        </div>
+                        <div class="hide _backPanel" id="16_backPanel">
+                            <div class="text">
+                                <p style="color: white; font-size: 13px">A Very Hot Day in Vietnam</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="17" class="card scale _flipper">
+                        <div id="17_content" style="position:relative">
+                            <img src="images/vietnam2019_3.jpg">
+                            <!-- <div class="text">
+                                <p style="color: white; font-size: 13px">Graduation Pictures</p>
+                            </div> -->
+                        </div>
+                        <div class="hide _backPanel" id="17_backPanel">
+                            <div class="text">
+                                <p style="color: white; font-size: 13px">A view from the hotel in Da Nang</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="18" class="card scale">
+                        <div id="18_content" style="position:relative">
+                            <img src="images/arch.jpg">
+                            <!-- <div class="text">
+                                <p style="color: white; font-size: 13px">Graduation Pictures</p>
+                            </div> -->
+                        </div>
+                    </div>
+
+                    <div id="19" class="card scale _flipper">
+                        <div id="19_content" style="position:relative">
+                            <img src="images/waves.jpg">
+                            <!-- <div class="text">
+                                <p style="color: white; font-size: 13px">Graduation Pictures</p>
+                            </div> -->
+                        </div>
+                        <div class="hide _backPanel" id="19_backPanel">
+                            <div class="text">
+                                <p style="color: white; font-size: 13px">Waves during the Golden Hour</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="20" class="card scale">
+                        <div id="20_content" style="position:relative">
+                            <img src="images/jessica.JPG">
+                        </div>
+                    </div>
+
+                    <div id="21" class="card scale _flipper">
+                        <div id="21_content" style="position:relative">
+                            <img src="images/skyfullofstars.jpg">
+                            <!-- <div class="text">
+                                <p style="color: white; font-size: 13px">Graduation Pictures</p>
+                            </div> -->
+                        </div>
+                        <div class="hide _backPanel" id="21_backPanel">
+                            <div class="text">
+                                <p style="color: white; font-size: 13px">A Sky Full of Stars</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="22" class="card scale _flipper">
+                        <div id="22_content" style="position:relative">
+                            <img src="images/space.jpg">
+                            <!-- <div class="text">
+                                <p style="color: white; font-size: 13px">Graduation Pictures</p>
+                            </div> -->
+                        </div>
+                        <div class="hide _backPanel" id="22_backPanel">
+                            <div class="text">
+                                <p style="color: white; font-size: 13px">Eastern WA</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="23" class="card scale">
+                        <div id="23_content" style="position:relative">
+                            <img src="images/surrender.jpg">
+                        </div>
+                    </div>
+
+                    <div id="24" class="card scale _flipper">
+                        <div id="24_content" style="position:relative">
+                            <img src="images/tiffany.jpg">
+                            <!-- <div class="text">
+                                <p style="color: white; font-size: 13px">Graduation Pictures</p>
+                            </div> -->
+                        </div>
+                        <div class="hide _backPanel" id="24_backPanel">
+                            <div class="text">
+                                <p style="color: white; font-size: 13px">Tiffany</p>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
