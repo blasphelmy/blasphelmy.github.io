@@ -25,6 +25,7 @@
     backdrop-filter: blur(8px)!important;
     -webkit-backdrop-filter: blur(8px)!important;
     -moz-backdrop-filter: blur(8px)!important;
+    overflow: scroll;
 }
 .scale:hover {
     /* transform: scale(1.05); */
