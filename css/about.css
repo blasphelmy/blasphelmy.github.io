@@ -90,11 +90,12 @@
 .block {
     position: relative;
     display: inline-block;
+    text-decoration: none;
 }
 .block > h1,h2,h3 {
     position: relative;
     right: 40px;
-    text-decoration: underline;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .block > p {
     padding-right: 70px;
@@ -102,10 +103,12 @@
     padding-bottom: 20px;
     padding-left: 20px;
     color: rgb(255, 247, 223);
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .block > .pHeaders,a {
     color: rgb(193, 179, 255);
     font-weight: bold;
+    text-decoration: none;
 }
 #contactsBlock > .pHeaders {
     color: rgb(193, 179, 255);

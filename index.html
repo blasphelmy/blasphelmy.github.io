@@ -1,118 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script
-      src="https://code.jquery.com/jquery-3.6.0.js"
-      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-      crossorigin="anonymous"
-    ></script>
-
-    <script src="https://blasphelmy.github.io/aBasicJavascriptVisualizer/jsScoper/lib/codemirror.js"></script>
-    <script src="https://blasphelmy.github.io/aBasicJavascriptVisualizer/jsScoper/javascript/matchbrackets.js"></script>
-    <script src="https://blasphelmy.github.io/aBasicJavascriptVisualizer/jsScoper/javascript/closebrackets.js"></script>
-    <link rel="stylesheet" href="https://blasphelmy.github.io/aBasicJavascriptVisualizer/jsScoper/lib/codemirror.css">
-    <link rel="stylesheet" href="https://blasphelmy.github.io/aBasicJavascriptVisualizer/jsScoper/theme/material-palenight.css">
-    <script src="https://blasphelmy.github.io/aBasicJavascriptVisualizer/jsScoper/javascript/javascript.js"></script>
-
-    <script src="https://blasphelmy.github.io/aBasicJavascriptVisualizer/jsScoper/objects.js"></script>
-    <script src="https://blasphelmy.github.io/aBasicJavascriptVisualizer/jsScoper/tools.js"></script>
-    <script src="https://blasphelmy.github.io/aBasicJavascriptVisualizer/jsScoper/regexDefinitions.js"></script>
-    <script src="https://blasphelmy.github.io/aBasicJavascriptVisualizer/jsScoper/handlers.js"></script>
-    <script src="https://blasphelmy.github.io/aBasicJavascriptVisualizer/jsScoper/eventListeners.js"></script>
-    <script src="https://blasphelmy.github.io/aBasicJavascriptVisualizer/jsScoper/init.js"></script>
-    
-    <link rel="stylesheet" href="https://blasphelmy.github.io/aBasicJavascriptVisualizer/jsScoper/style.css" />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me</title>
     <link rel="stylesheet" href="css/defaults.css" />
+    <link rel="stylesheet" href="css/about.css" /> 
     <link rel="stylesheet" href="css/menuButton.css" />
+    <link rel="stylesheet" href="css/masonaryEffect.css" />
     <script src="menuButton.js"></script>
-
-    <title>JS Scoper</title>
-  </head>
-  <body>
+    <script src="js/parallaxalizeNavigation.js"></script>
+    <script src="js/helpers.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
+</head>
+<body>
+<script>
+window.addEventListener("scroll", function(){
+    stickyContact();
+    stickyMenu();
+});
+window.addEventListener("resize", function(){
+    stickyContact();
+    stickyMenu();
+});
+window.onload = function () {
+    setTimeout(()=>{
+        msnry = new Masonry( '#cardcontainer', {});
+    }, 200)
+}
+</script>
 <style>
-.clickedBG{
-  background-color: rgba(75, 72, 92, 0.233);
+#navWrapper_sticky {
+    position: fixed;
+    width: 100%;
+    height: 100px;
+    background-image: none;
+    padding: 0;
+    background-color: rgb(106, 104, 131);
+    -webkit-box-shadow: inset 0px 0px 0px 0px #000000; 
+    box-shadow: inset 0px 0px 0px 0px #000000;
+    z-index: 10;
 }
 </style>
-<div id = "navbar">
-  <div id="menuScreen" class="hide">
-    <a href="calculatorClone.html">Macintosh Calculator Clone</a>
-    <a href="2048.html">A Simple Game of 2048</a>
-    <a href="https://blasphelmy.github.io/aBasicJavascriptVisualizer/">Javascript Scoper</a>
-    <hr>
-    <a href="about.html">About Me</a>
-    <a href="about.html#projects">Projects</a>
-    <a href="about.html#contactsBlock">Contact Me</a>
-    <a href="resume.html">Resume</a>
-    <hr>
-  </div>
-<a href="index.html"><h1 style="display: inline-block">DN</h1></a> <div id = "menuButtonContainer" onclick="menuBarClick()"><div id="menuButton"><p>|</p><p>|</p><p>|</p></div></div>
+<div id="navWrapper">
+    <div id="menuScreen" class="hide">
+        <a href="calculatorClone.html">Macintosh Calculator Clone</a>
+        <a href="2048.html">A Simple Game of 2048</a>
+        <a href="https://blasphelmy.github.io/aBasicJavascriptVisualizer/">Javascript Scoper</a>
+        <hr>
+        <a href="index.html">About Me</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#contactsBlock">Contact Me</a>
+        <a href="https://docs.google.com/document/d/1Tsrjx4nYVHHWbOahBMIsWJXcZB77acTAGgULYLTH1yQ/edit?usp=sharing">Resume</a>
+        <hr>
+    </div>
+    <div id = "navbar">
+        <a href="index.html"><h1 style="display: inline-block;color: rgb(255, 247, 223);">DN</h1></a> <div id = "menuButtonContainer" onclick="menuBarClick()"><div id="menuButton"><p>|</p><p>|</p><p>|</p></div></div>
+    </div>
 </div>
-<button id="runBtn" onclick="runButton()">Run Code</button>
-<button onclick="showHide()">Show/Hide Scope Visualiser</button>
-</div>
-<br><br><br><br>
-<div id="mainFrameContainer" class="hide">
-</div>
-<div id="console">
-</div>
-<div id="codeEditorWrapper">
-<div class="codeEditiors">
-  <textarea id="code" name="code">
-var year = 2; 
-var hellomessage = "Hello! Welcome to my landing page! ";
-var aQuickAbout = "here, you will soon be able to find more projects that I've done during my time at Renton Technical College along with some additional information about me and my interests outside of school"; 
-var keyword = "internship";
-function moreInfo(){
-  hellomessage = "More information could be found on my about me page!";
-  console.log(" ");
-  console.log(goal);
-}
-function a(){
-  hellomessage = "I’m a " + year + "nd  year CSI student at ";
-  var location;
-  function b(){
-    location = "Renton Technical College.";
-    goal = "What I'm looking for are CompSci "+ keyword + " opportunities.";
-  }
-  b();
-  console.log(hellomessage + location);
-  console.log(aQuickAbout);
-  moreInfo();
-}
-function offer(){
-    var haveOffer = "If you have any opportunities";
-  console.log(haveOffer + "  and would like to offer me an " + keyword + "...");
-}
-function contactMe(){
-  var email = "dhnguyen08@student.rtc.edu";
-  console.log("Or, you could shoot me an email @ \n" + email);
-  var goodbyeMessage = "Thanks for stopping by!";
-  function a(){
-    console.log(" ");
-    console.log("Thanks for stopping by!");
-  }
-  a();
-}
-console.log(hellomessage);
-a();
-offer();
-console.log(hellomessage);
-contactMe();    
+<div id="mainBody">
+    <div id="profilePicture"></div><div id="Name"><p>David Nguyen</p></div>
+    <!-- <div class="block">
+        <p>COntact Info</p>
+    </div> -->
+    <div id="contentsContainer">
+        <div class="block dummy">
+            <h1 >Contact Information</h1>
+        </div> 
+        <div id="contactsBlock" class="block">
+            <h1>Contact Information</h1>
+                <p class="pHeaders">Subject</p>
+                <input type="text" name="emailSubject" class="label"><br>
+                <p class="pHeaders">Your Message Here</p>
+                <textarea id="code" name="emailBody"></textarea>
+            <button onclick="sendMail()">Send Email</button>
+        </div> 
+        <div id="contents" class="block">
+            <h1>About Me</h1>
+            <h2>
+                Skills
+            </h2>
+            <p class="pHeaders">
+                <span class="skillBlocks">HTML/CSS</span>
+                <span class="skillBlocks">Javascript</span>
+                <span class="skillBlocks">PHP</span>
+                <span class="skillBlocks">SQL</span>
+                <span class="skillBlocks">Java</span>
+                <span class="skillBlocks">C#</span>
+            </p>
+            <h3 id="projects">
+                Projects
+            </h3>
+            <div id="cardcontainer" class="container res" style="max-width:100%" data-masonry='{"percentPosition": true }'>
 
-  </textarea>
-</div>
-<div class="codeEditiors hideWhen">
-  <textarea id="code_array" name="code">
-  </textarea>
-</div>
-</div>
+                <div class="card scale">
+                    <div style="position:relative">
+                        <video name="Video Name" autoplay loop muted>
+                            <source src="/projspreviews/2048.mov">
+                        </video>
+                        <div class="text">
+                            <a  href="/2048.html"><h3 style="padding: 5px; right: 0px; text-decoration: none!important;" >2048</h3></a>
+                            <p style="color: white; font-size: 10px">
+                                <span class="skillBlocks">HTML/CSS</span>
+                                <span class="skillBlocks">Javascript</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="card scale">
+                    <div style="position:relative">
+                        <video name="Video Name" autoplay loop muted>
+                            <source src="/projspreviews/calcu2.mov">
+                        </video>
+                        <div class="text">
+                            <a href="/calculatorClone.html"><h3 style="padding: 5px; right: 0px; text-decoration: none!important;" >Mac Calculator</h3></a>
+                            <p style="color: white; font-size: 10px">
+                                <span class="skillBlocks">HTML/CSS</span>
+                                <span class="skillBlocks">Javascript</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card scale">
+                    <div style="position:relative">
+                        <video name="Video Name" autoplay loop muted>
+                            <source src="/projspreviews/jsscoper2.mov">
+                        </video>
+                        <div class="text">
+                            <a href="/jsScoper.html"><h3 style="padding: 5px; right: 0px; text-decoration: none!important;" >Javascript Scoper</h3></a>
+                            <p style="color: white; font-size: 10px">
+                                <span class="skillBlocks">HTML/CSS</span>
+                                <span class="skillBlocks">Javascript</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card scale">
+                    <div style="position:relative">
+                        <video name="Video Name" autoplay loop muted>
+                            <source src="/projspreviews/jsFiddlerClone.mov">
+                        </video>
+                        <div class="text">
+                            <a href="https://simplejsclasses.net"><h3 style="padding: 5px; right: 0px; text-decoration: none!important;" >Javascript Sandbox</h3></a>
+                            <p style="color: white; font-size: 10px">
+                                <span class="skillBlocks">HTML/CSS</span>
+                                <span class="skillBlocks">Javascript</span>
+                                <span class="skillBlocks">Node.js</span>
+                                <span class="skillBlocks">ASP.net/C#</span>
+                                <span class="skillBlocks">SQL</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <h2>
+                Background
+            </h2>
+            <p>
+                I'm from a first generation family of immigrants. My parents had me in Vietnam and we moved 
+                here when I was really young. We did struggle a lot but we've managed to do alright for ourselves. 
+            </p>
+            <p>
+                It would be an understatement to say that I was a little lost after graduating high school. I
+                didn't really know what I wanted to do with myself or what any of my future plans are. But after being part
+                of life for a few years, I decided I wanted to go back into school, and since then I've been working really hard
+                on all of my classes. I've come to recognize the opportunities and privileges that I have and are available
+                to me, and I aim to make the most of that.
+            </p>
+            <h2>
+                School
+            </h2>
+            <p class="pHeaders">- Renton Technical College</p>
+            <p>
+                Currently a second year student at Renton Technical College working on my Associates degree, which I expect to earn this spring. Moving
+                forward after that, I will also be working towards my Bachelor's here at RTC.
+            </p>
+            <h2>Goals</h2>
+            <p class="pHeaders">Graduate College with a Bachelor's at the very least</p>
+            <p class="pHeaders">Pursue an internship in Web Development</p>
+            <p class="pHeaders">Pursue a future career in Web Development</p>
+            <p>
+                Working here has given me the opportunity to really develop not only my skills and understanding of computer science,
+                it has also helped me develop my communication skills. While sitting there and learning how to effectively communicate CompSci concepts 
+                to a student who may have come in not understanding anything at all, is definitely an ongoing process, I feel like in my time tutoring, I have figured it out enough
+                to help those type of students make significant progress in their learning here at RTC.
+            </p>
+        </div>  
+    </div>
+</div>
 </body>
-
-<script>
-  </script>
 </html>
