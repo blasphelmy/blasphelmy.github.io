@@ -14,7 +14,7 @@
     cursor: pointer;
 }
 ._backPanel {
-    position: absolute !important;
+    position: absolute;
     top: 0px;
     padding: 20px;
     width: 105%;
@@ -22,13 +22,18 @@
     font-family: Tahoma;
     font-size: 13px;
     background: rgba(0, 0, 0, 0.311);
-    backdrop-filter: blur(8px)!important;
-    -webkit-backdrop-filter: blur(8px)!important;
-    -moz-backdrop-filter: blur(8px)!important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    -moz-backdrop-filter: blur(8px);
     -ms-overflow-style: none; /* for Internet Explorer, Edge */
     scrollbar-width: none; /* for Firefox */
     overflow-y: scroll; 
     padding-bottom: 100px;
+    -moz-transform: scale(-1, 1);
+-webkit-transform: scale(-1, 1);
+-o-transform: scale(-1, 1);
+-ms-transform: scale(-1, 1);
+transform: scale(-1, 1);
 }
 
 ._backPanel::-webkit-scrollbar {
