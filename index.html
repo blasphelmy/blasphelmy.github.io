@@ -26,7 +26,11 @@ window.addEventListener("resize", function(){
 });
 window.onload = function () {
     setTimeout(()=>{
-        msnry = new Masonry( '#cardcontainer', {});
+        let msnry = new Masonry( '#cardcontainer', {});
+        let videos = document.getElementsByTagName("video");
+        for(video of videos){
+            video.play();
+        }
     }, 200)
 }
 </script>
