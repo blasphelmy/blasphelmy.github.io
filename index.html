@@ -24,6 +24,13 @@ window.addEventListener("scroll", function(){
 window.addEventListener("resize", function(){
     stickyContact();
     stickyMenu();
+    const elements = document.getElementsByClassName("_flipper");
+    for (let element of elements) {
+        let contentElement = document.getElementById(element.id + "_content");
+        let _backPanel = document.getElementById(element.id + "_backPanel");
+        let height = contentElement.offsetHeight;
+        _backPanel.style.setProperty("height", `${height}px`);
+    }
 });
 window.onload = function () {
     setTimeout(()=>{
