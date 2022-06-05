@@ -118,6 +118,7 @@
 #contactsBlock {
     color: rgb(255, 247, 223);
     width: 300px;
+    padding-left: 20px;
 }
 .fixContactBlock {
     position: fixed;
