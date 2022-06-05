@@ -12,6 +12,7 @@
     <script src="menuButton.js"></script>
     <script src="js/parallaxalizeNavigation.js"></script>
     <script src="js/helpers.js"></script>
+    <script src="js/flipper.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
 </head>
 <body>
@@ -27,6 +28,7 @@ window.addEventListener("resize", function(){
 window.onload = function () {
     setTimeout(()=>{
         let msnry = new Masonry( '#cardcontainer', {});
+        flipper();
         let videos = document.getElementsByTagName("video");
         for(video of videos){
             video.play();
@@ -89,23 +91,28 @@ window.onload = function () {
             <p class="pHeaders">
                 <span class="skillBlocks">HTML/CSS</span>
                 <span class="skillBlocks">Javascript</span>
+                <span class="skillBlocks">Bootstrap</span>
+                <span class="skillBlocks">jQuery</span>
                 <span class="skillBlocks">PHP</span>
                 <span class="skillBlocks">SQL</span>
+                <span class="skillBlocks">MongoDB</span>
                 <span class="skillBlocks">Java</span>
                 <span class="skillBlocks">C#</span>
             </p>
             <h3 id="projects">
                 Projects
             </h3>
-            <div id="cardcontainer" class="container res" style="max-width:100%" data-masonry='{"percentPosition": true }'>
+            <div id="cardcontainer" class="res" style="max-width:100%" data-masonry='{"percentPosition": true }'>
 
-                <div class="card scale">
-                    <div style="position:relative">
-                        <video name="Video Name" type="video/mp4" autoplay loop muted playsinline>
-                            <source src="/projspreviews/2048.mov">
-                        </video>
+                <div id="1" class="card scale _flipper">
+                    <div id="1_content" style="position:relative">
+                        <img src="/projspreviews/2048.gif" alt="">
+                    </div>
+
+                    <div class="hide _backPanel" id="1_backPanel" style="transform: rotate3d(0,1,0, 180deg)">
                         <div class="text">
-                            <a  href="/2048.html"><h3 style="padding: 5px; right: 0px; text-decoration: none!important;" >2048</h3></a>
+                            <a  href="/2048.html"><h2 style="padding: 5px; right: 0px; text-decoration: none!important;" >2048</h2></a>
+                            <p style="color: white; font-size: 13px">A Simple Game of 2048!</p>
                             <p style="color: white; font-size: 10px">
                                 <span class="skillBlocks">HTML/CSS</span>
                                 <span class="skillBlocks">Javascript</span>
@@ -114,27 +121,15 @@ window.onload = function () {
                     </div>
                 </div>
 
-                <div class="card scale">
-                    <div style="position:relative">
-                        <video name="Video Name" type="video/mp4" autoplay loop muted playsinline>
-                            <source src="/projspreviews/calcu2.mov">
-                        </video>
-                        <div class="text">
-                            <a href="/calculatorClone.html"><h3 style="padding: 5px; right: 0px; text-decoration: none!important;" >Mac Calculator</h3></a>
-                            <p style="color: white; font-size: 10px">
-                                <span class="skillBlocks">HTML/CSS</span>
-                                <span class="skillBlocks">Javascript</span>
-                            </p>
-                        </div>
+                <div id="2" class="card scale _flipper">
+                    <div id="2_content" style="position:relative">
+                        <img src="/projspreviews/calcu2.gif" alt="">
                     </div>
-                </div>
-                <div class="card scale">
-                    <div style="position:relative">
-                        <video name="Video Name" type="video/mp4" autoplay loop muted playsinline>
-                            <source src="/projspreviews/jsscoper2.mov">
-                        </video>
+
+                    <div class="hide _backPanel" id="2_backPanel" style="transform: rotate3d(0,1,0, 180deg)">
                         <div class="text">
-                            <a href="/jsScoper.html"><h3 style="padding: 5px; right: 0px; text-decoration: none!important;" >Javascript Scoper</h3></a>
+                            <a  href="/calculatorClone.html"><h2 style="padding: 5px; right: 0px; text-decoration: none!important;" >Mac Calculator</h2></a>
+                            <p style="color: white; font-size: 13px">An attempt at cloning the Macintosh Calulator. Press R to go back in your calculations!</p>
                             <p style="color: white; font-size: 10px">
                                 <span class="skillBlocks">HTML/CSS</span>
                                 <span class="skillBlocks">Javascript</span>
@@ -143,8 +138,48 @@ window.onload = function () {
                     </div>
                 </div>
 
-                <div class="card scale">
-                    <div style="position:relative">
+                <div id="3" class="card scale _flipper">
+                    <div id="3_content" style="position:relative">
+                        <img src="/projspreviews/jsscoper2.gif" alt="">
+                        <a  href="/jsScoper.html"><h4 style="padding: 5px; right: 0px; text-decoration: none!important;" >JavaScript Scope Visualiser</h4></a>
+                    </div>
+
+                    <div class="hide _backPanel" id="3_backPanel" style="transform: rotate3d(0,1,0, 180deg)">
+                        <div class="text">
+                            <a  href="https://blasphelmy.github.io/aBasicJavascriptVisualizer/"><h2 style="padding: 5px; right: 0px; text-decoration: none!important;" >JavaScript Scope Visualiser</h2></a>
+                            <p style="color: white; font-size: 13px">This app can parse basic javascript by hand and display the output! <br>In addition, you can show the scopes/frames that are built when you run your code!</p>
+                            <p style="color: white; font-size: 10px">
+                                <span class="skillBlocks">HTML/CSS</span>
+                                <span class="skillBlocks">Javascript</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="4" class="card scale _flipper">
+                    <div id="4_content" style="position:relative">
+                        <img src="/projspreviews/jsFiddlerClone.gif" alt="">
+                        <a  href="https://simplejsclasses.net"><h4 style="padding: 5px; right: 0px; text-decoration: none!important;" >JavaScript Sandbox</h4></a>
+                    </div>
+
+                    <div class="hide _backPanel" id="4_backPanel" style="transform: rotate3d(0,1,0, 180deg)">
+                        <div class="text">
+                            <a  href="https://simplejsclasses.net"><h2 style="padding: 5px; right: 0px; text-decoration: none!important;" >JavaScript Sandbox</h2></a>
+                            <p style="color: white; font-size: 13px">A mashup of JSFiddle and Codecademy!</p>
+                            <p style="color: white; font-size: 10px">
+                                <span class="skillBlocks">HTML/CSS</span>
+                                <span class="skillBlocks">Javascript</span>
+                                <span class="skillBlocks">Node.js</span>
+                                <span class="skillBlocks">ASP.net/C#</span>
+                                <span class="skillBlocks">SQL</span>
+                                <span class="skillBlocks">MongoDB</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div id="4" class="card scale">
+                    <div id="4_content" style="position:relative">
                         <video name="Video Name" type="video/mp4" autoplay loop muted playsinline>
                             <source src="/projspreviews/jsFiddlerClone.mov">
                         </video>
@@ -156,10 +191,11 @@ window.onload = function () {
                                 <span class="skillBlocks">Node.js</span>
                                 <span class="skillBlocks">ASP.net/C#</span>
                                 <span class="skillBlocks">SQL</span>
+                                <span class="skillBlocks">MongoDB</span>
                             </p>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
             </div>
             <h2>
