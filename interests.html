@@ -38,15 +38,21 @@
         });
         window.onload = function () {
             setTimeout(() => {
-                let msnry = new Masonry('#cardcontainer', {});
-                let msrysect2 = new Masonry('#cardcontainersect2', {});
-                let msrysect3 = new Masonry('#cardcontainersect3', {});
+                let msnry = new Masonry('#cardcontainer', {
+                    columnWidth: '.card',
+                });
+                let msrysect2 = new Masonry('#cardcontainersect2', {
+                    columnWidth: '.card',
+                });
+                let msrysect3 = new Masonry('#cardcontainersect3', {
+                    columnWidth: '.card',
+                });
                 flipper();
                 let videos = document.getElementsByTagName("video");
                 for (video of videos) {
                     video.play();
                 }
-            }, 1000)
+            }, 5000)
         }
     </script>
     <style>
