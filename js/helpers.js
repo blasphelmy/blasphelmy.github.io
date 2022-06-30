@@ -24,7 +24,11 @@ function stickyContact(){
         contactBlockElement.classList.remove("fixContactBlock");
         contactBlockElement.classList.add("KFfadeout");
     }else if(window.innerWidth <= 1100){
-        contactBlockElement.classList.remove("fixContactBlock");
+        try{
+            contactBlockElement.classList.remove("fixContactBlock");
+        }catch{
+            
+        }
     }
 }
 function stickyMenu(){

@@ -14,9 +14,14 @@
     <script src="js/parallaxalizeNavigation.js"></script>
     <script src="js/helpers.js"></script>
     <script src="js/flipper.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
         integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous"
         async></script>
+    <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
 </head>
 
 <body>
@@ -37,12 +42,27 @@
             }
         });
         window.onload = function () {
-            setTimeout(() => {
+            // setTimeout(() => {
+            //     let msnry = new Masonry('#cardcontainer', {
+            //         columnWidth: '.card',
+            //         percentPosition: true,
+            //     });
+            //     let msrysect3 = new Masonry('#cardcontainersect3', {
+            //         columnWidth: '.card',
+            //         percentPosition: true,
+            //     });
+            //     let msrysect2 = new Masonry('#cardcontainersect2', {
+            //         columnWidth: '.card',
+            //         percentPosition: true,
+            //     });
+            //     flipper();
+            //     let videos = document.getElementsByTagName("video");
+            //     for (video of videos) {
+            //         video.play();
+            //     }
+            // }, 5000)
+            $('#contentsContainer').imagesLoaded( function() {
                 let msnry = new Masonry('#cardcontainer', {
-                    columnWidth: '.card',
-                    percentPosition: true,
-                });
-                let msrysect2 = new Masonry('#cardcontainersect2', {
                     columnWidth: '.card',
                     percentPosition: true,
                 });
@@ -50,12 +70,16 @@
                     columnWidth: '.card',
                     percentPosition: true,
                 });
+                let msrysect2 = new Masonry('#cardcontainersect2', {
+                    columnWidth: '.card',
+                    percentPosition: true,
+                });
                 flipper();
                 let videos = document.getElementsByTagName("video");
                 for (video of videos) {
                     video.play();
-                }
-            }, 5000)
+                } 
+            });
         }
     </script>
     <style>
