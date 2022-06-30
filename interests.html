@@ -27,8 +27,6 @@
 <body>
     <script>
         window.addEventListener("resize", function () {
-            stickyContact();
-            stickyMenu();
             const elements = document.getElementsByClassName("_flipper");
             for (let element of elements) {
                 let contentElement = document.getElementById(element.id + "_content");
@@ -38,25 +36,6 @@
             }
         });
         window.onload = function () {
-            // setTimeout(() => {
-            //     let msnry = new Masonry('#cardcontainer', {
-            //         columnWidth: '.card',
-            //         percentPosition: true,
-            //     });
-            //     let msrysect3 = new Masonry('#cardcontainersect3', {
-            //         columnWidth: '.card',
-            //         percentPosition: true,
-            //     });
-            //     let msrysect2 = new Masonry('#cardcontainersect2', {
-            //         columnWidth: '.card',
-            //         percentPosition: true,
-            //     });
-            //     flipper();
-            //     let videos = document.getElementsByTagName("video");
-            //     for (video of videos) {
-            //         video.play();
-            //     }
-            // }, 5000)
             $('#contentsContainer').imagesLoaded( function() {
                 $('#cardcontainer').masonry({
                     columnWidth: '.card',
