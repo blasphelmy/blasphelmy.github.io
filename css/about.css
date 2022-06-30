@@ -110,6 +110,13 @@
     font-weight: bold;
     text-decoration: none;
 }
+@media screen and (max-width: 774px) 
+{ 
+    .block > p {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+}
 #contactsBlock > .pHeaders {
     color: rgb(193, 179, 255);
     font-weight: bold;
