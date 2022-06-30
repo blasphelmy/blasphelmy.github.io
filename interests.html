@@ -58,15 +58,15 @@
             //     }
             // }, 5000)
             $('#contentsContainer').imagesLoaded( function() {
-                let msnry = new Masonry('#cardcontainer', {
+                $('#cardcontainer').masonry({
                     columnWidth: '.card',
                     percentPosition: true,
                 });
-                let msrysect3 = new Masonry('#cardcontainersect3', {
+                $('#cardcontainersect2').masonry({
                     columnWidth: '.card',
                     percentPosition: true,
                 });
-                let msrysect2 = new Masonry('#cardcontainersect2', {
+                $('#cardcontainer3').masonry({
                     columnWidth: '.card',
                     percentPosition: true,
                 });
@@ -138,7 +138,7 @@
                     in general. I enjoy watching documentaries about global issues, nature, astromony. I also enjoy
                     documentaries about the history of science. I try to not venture too deep into the political stuff
                     too much because a lot of it can be pretty rage inducing. </p>
-                <div id="cardcontainer" class="res" style="max-width:100%" data-masonry='{"percentPosition": true }'>
+                <div id="cardcontainer" class="res" style="max-width:100%">
 
                     <div id="1" class="card scale _flipper">
                         <div id="1_content" style="position:relative">
@@ -165,8 +165,7 @@
                 <p>I play a little piano. I picked it up as a hobby a few years ago and playing it has really
                     helped gotten me through some tougher times. I also like to take photos, keep up with the
                     maintenance of my 4 aquariums, and catch up on the latest season of Stranger Things on Netflix.</p>
-                <div id="cardcontainersect2" class="res" style="max-width:100%"
-                    data-masonry='{"percentPosition": true }'>
+                <div id="cardcontainersect2" class="res" style="max-width:100%">
 
                     <div id="2" class="card scale _flipper">
                         <div id="2_content" style="position:relative">
@@ -266,7 +265,7 @@
 
                 <h1>Photos</h1>
                 <p>I can be pretty nifty when it comes to using photoshop</p>
-                <div id="cardcontainer3" class="res" style="max-width:100%" data-masonry='{"percentPosition": true }'>
+                <div id="cardcontainer3" class="res" style="max-width:100%">
 <!--                     
                     <div id="7" class="card scale _flipper">
                         <div id="7_content" style="position:relative">
