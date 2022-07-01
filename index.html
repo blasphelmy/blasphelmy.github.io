@@ -55,13 +55,63 @@ window.onload = function () {
     box-shadow: inset 0px 0px 0px 0px #000000;
     z-index: 10;
 }
+@media screen and (max-width: 1427px) 
+{ 
+    .card {
+        width: calc(49% - 20px - 20px);
+        margin: 10px;
+    }
+
+    .res {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
+@media screen and (max-width: 1100px) 
+{ 
+    .card {
+        width: calc(32% - 20px);
+        margin: 10px;
+    }
+
+    .res {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
+@media screen and (max-width: 650px) 
+{ 
+    .card {
+        width: calc(49% - 20px - 20px);
+        margin: 10px;
+    }
+
+    .res {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
+@media screen and (max-width: 500px) 
+{ 
+    .card {
+        width: calc(100% - 20px - 20px);
+        margin: 0px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+
+    .res {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
 </style>
 <div id="navWrapper">
     <div id="menuScreen" class="hide">
         <a href="calculatorClone.html">Macintosh Calculator Clone</a>
         <a href="2048.html">A Simple Game of 2048</a>
         <a href="https://blasphelmy.github.io/aBasicJavascriptVisualizer/">Javascript Scoper</a>
-        <a href="https://simplejsclasses.net">Javascript Sandbox</a>
+        <a href="https://simplejslessons.azurewebsites.net">Javascript Sandbox</a>
         <hr>
         <a href="index.html">About Me</a>
         <a href="index.html#projects">Projects</a>
@@ -168,12 +218,12 @@ window.onload = function () {
                 <div id="4" class="card scale _flipper">
                     <div id="4_content" style="position:relative">
                         <img src="/projspreviews/jsFiddlerClone.gif" alt="">
-                        <a  href="https://simplejsclasses.net"><h4 style="padding: 5px; right: 0px; text-decoration: none!important;" >JavaScript Sandbox</h4></a>
+                        <a  href="https://simplejslessons.azurewebsites.net"><h4 style="padding: 5px; right: 0px; text-decoration: none!important;" >JavaScript Sandbox</h4></a>
                     </div>
 
                     <div class="hide _backPanel" id="4_backPanel">
                         <div class="text">
-                            <a  href="https://simplejsclasses.net"><h2 style="padding: 5px; right: 0px; text-decoration: none!important;" >JavaScript Sandbox</h2></a>
+                            <a  href="https://simplejslessons.azurewebsites.net"><h2 style="padding: 5px; right: 0px; text-decoration: none!important;" >JavaScript Sandbox</h2></a>
                             <p style="color: white; font-size: 13px">A mashup of JSFiddle and Codecademy!</p>
                             <p style="color: rgb(246, 255, 174); font-size: 13px">Please allow cookies for the site to work correctly :)</p>
                             <p style="color: white; font-size: 10px">
@@ -183,6 +233,26 @@ window.onload = function () {
                                 <span class="skillBlocks">ASP.net/C#</span>
                                 <span class="skillBlocks">SQL</span>
                                 <span class="skillBlocks">MongoDB</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="6" class="card scale _flipper">
+                    <div id="6_content" style="position:relative">
+                        <img src="/images/ctcreator.gif" alt="">
+                        <a  href="https://cocktailcreator.azurewebsites.net"><h4 style="padding: 5px; right: 0px; text-decoration: none!important;" >CockTail Mixer</h4></a>
+                    </div>
+
+                    <div class="hide _backPanel" id="6_backPanel">
+                        <div class="text">
+                            <a  href="https://cocktailcreator.azurewebsites.net"><h2 style="padding: 5px; right: 0px; text-decoration: none!important;" >CockTail Creator</h2></a>
+                            <p style="color: white; font-size: 13px">This website is a WIP. Built for a client according to their needs.</p>
+                            <p style="color: white; font-size: 10px">
+                                <span class="skillBlocks">HTML/CSS</span>
+                                <span class="skillBlocks">Javascript</span>
+                                <span class="skillBlocks">ASP.net/C#</span>
+                                <span class="skillBlocks">SQL</span>
                             </p>
                         </div>
                     </div>
